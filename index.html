@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Welcome to SpeakEasy</title>
+
+		<link rel="stylesheet" href="/fonts/vegur/stylesheet.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/uikit/uikit.css" />
+		<link rel="stylesheet" href="/uikit/uikit.almost-flat.css" />
+
+	</head>
+	<body>
+		<div id="layout">
+			<header>
+				<img src="images/worldtongue.png" class="logo" />
+			</header>
+			<div id="chat_window">
+				<div class="fill-y">
+					<div id="chat_panel" >
+
+						<div id="chat_messages">
+							<ul>
+								<li class="dummy_text">You are now talking to a member from <span id="user_location">Beijing, China</span></li>
+							</ul>
+						</div>
+
+						<form id="send_form">
+							<div class="uk-grid">
+								<div lass="uk-width-1-10">
+									<i id="send_button" class="uk-icon-send"></i>
+								</div>
+
+								<div class="uk-width-9-10" style="padding-left:20px;">
+									<input type="text" id="send_box" placeholder="Click here to start typing"></input>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			
+			</div>
+
+		</div>
+	 	<!-- <ul id="messages"></ul>
+
+	  	<form action="">
+			<input id="m" autocomplete="off" /><button>Send</button>
+		</form> -->
+
+		<script src="/jquery/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/main.js"></script>
+	</body>
+</html>
