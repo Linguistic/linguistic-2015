@@ -5,7 +5,7 @@ var http 	= require('http').Server(app);
 var io	 	= require('socket.io')(http);
 
 app.use('/css', express.static(__dirname + '/assets/css/core'));
-app.use('/js', express.static(__dirname + '/assets/js/core'));
+app.use('/js', express.static(__dirname + '/assets/js/'));
 app.use('/images', express.static(__dirname + '/assets/img'));
 app.use('/uikit', express.static(__dirname + '/bower_components/uikit/css'));
 app.use('/jquery', express.static(__dirname + '/bower_components/jquery/dist'));
@@ -58,11 +58,14 @@ var matchUser = function(user) {
         chat : chat, 
         partner : user
     });
+    
+    console.log("User " + user + " has entered a chat with " + next);
 };
 
 io.on('connection', function(socket) {
     var new_user = guid();
     io.emit('enter', { user : new_user });
+    console.log("User " + new_user + " has logged on");
     
 	socket.on('message', function(data) {
 		io.emit('message', data);
@@ -70,15 +73,20 @@ io.on('connection', function(socket) {
     
     socket.on('request', function(data) {
         if(data.hasOwnProperty("uid")) {
+            console.log("User " + data["uid"] + " is currently available to chat");
             homeless.push(data["uid"]);
             if(homeless.length > 1) {
-                console.log(homeless.length);
                 matchUser(data["uid"]);
             }
         }
 	});
     
-
+    socket.on('leave', function(data) {
+        if(data.hasOwnProperty("uid")) {
+            var uid = data["user"];
+            console.log("User " + uid + " has left");
+        }
+    });
 });
 
 http.listen(3000, function() {

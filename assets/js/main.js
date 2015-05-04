@@ -1,6 +1,12 @@
 var socket = io();
 var userid, chatid;
 
+$(window).bind("beforeunload", function() {
+    socket.emit('leave', {
+        user: userid
+    });
+});
+
 $('#send_form').submit(function() {
     socket.emit('message', {
         "uid" : userid,

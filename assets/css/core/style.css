@@ -128,9 +128,10 @@ button {
 	font-family:'VegurRegular', sans-serif;
 }
 
-#chat_messages ul li.dummy_text {
+#chat_messages ul li.status_text {
 	color:gray;
 	font-weight:lighter;
+    display:none;
 }
 
 #chat_messages ul li {
