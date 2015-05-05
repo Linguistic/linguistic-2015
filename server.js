@@ -7,8 +7,8 @@ var io	 	= require('socket.io')(http);
 app.use('/css', express.static(__dirname + '/assets/css/core'));
 app.use('/js', express.static(__dirname + '/assets/js/'));
 app.use('/images', express.static(__dirname + '/assets/img'));
-app.use('/uikit', express.static(__dirname + '/bower_components/uikit/css'));
-app.use('/jquery', express.static(__dirname + '/bower_components/jquery/dist'));
+app.use('/uikit', express.static(__dirname + '/node_modules/uikit/css'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/fonts/vegur', express.static(__dirname + '/assets/css/fonts/vegur'));
 
 app.get('/', function(req, res) {
