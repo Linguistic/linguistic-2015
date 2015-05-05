@@ -48,5 +48,6 @@ socket.on('assign', function(data) {
        chatid = data["chat"];
        console.log("Currently in chat " + chatid + " with user " + data["partner"]);
        $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
+       $("#send_button").removeClass('uk-icon-spin uk-icon-circle-o-notch').addClass('uk-icon-send');
    }
 });
