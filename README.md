@@ -1,2 +1,2 @@
 # Linguist Beta
-A chatroulette website for avid language learners to practice their language.
+A chatroulette website for language learners to practice their language.
