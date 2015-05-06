@@ -25,9 +25,9 @@ header {
 }
 
 header .logo {
-    width:500px;
+    width:300px;
     display:block;
-    margin:0 auto;
+    margin:10px 10px;
 }
 
 input[type=text] {

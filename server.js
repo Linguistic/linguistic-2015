@@ -1,4 +1,3 @@
-var $ 	 	= require('jquery');
 var express = require('express');
 var app  	= express();
 var http 	= require('http').Server(app);
@@ -7,7 +6,9 @@ var io	 	= require('socket.io')(http);
 app.use('/css', express.static(__dirname + '/assets/css/core'));
 app.use('/js', express.static(__dirname + '/assets/js/'));
 app.use('/images', express.static(__dirname + '/assets/img'));
-app.use('/uikit', express.static(__dirname + '/node_modules/uikit/css'));
+app.use('/uikit/css', express.static(__dirname + '/node_modules/uikit/dist/css'));
+app.use('/uikit/js', express.static(__dirname + '/node_modules/uikit/dist/js'));
+app.use('/uikit/fonts', express.static(__dirname + '/node_modules/uikit/dist/fonts'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/fonts/vegur', express.static(__dirname + '/assets/css/fonts/vegur'));
 
