@@ -3,6 +3,9 @@ var app  	= express();
 var http 	= require('http').Server(app);
 var io	 	= require('socket.io')(http);
 
+var Chance  = require('chance'),
+chance = new Chance();
+
 app.use('/css', express.static(__dirname + '/assets/css/core'));
 app.use('/js', express.static(__dirname + '/assets/js/'));
 app.use('/images', express.static(__dirname + '/assets/img'));
@@ -18,75 +21,53 @@ app.get('/', function(req, res) {
 
 var homeless = [];
 
-var guid = (function() {
-    
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-    }
-    
-    return function() {
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
-    };
-    
-})();
-
 var removeElement = function(array, element) {
     for(var i = 0; i < array.length; i++) {
-        if(array[i] == element) {
+        if(array[i].username == element.username) {
             array.splice(i, 1);
         }
     }
 };
 
-var matchUser = function(user) {
-
-    removeElement(homeless, user);
-    
-    var next = homeless.shift();
-    var chat = guid();
-    
-    io.emit('assign', { 
-        user : user, 
-        chat : chat, 
-        partner : next 
-    });
-
-    io.emit('assign', { 
-        user : next, 
-        chat : chat, 
-        partner : user
-    });
-    
-    console.log("User " + user + " has entered a chat with " + next);
-};
-
 io.on('connection', function(socket) {
-    var new_user = guid();
-    io.emit('enter', { user : new_user });
-    console.log("User " + new_user + " has logged on");
+    var new_user = chance.guid();
+    socket.username = new_user;
+    socket.emit('assign', { "user" : new_user });
+    console.log("User " + socket.username + " has logged on");
     
 	socket.on('message', function(data) {
-		io.emit('message', data);
+        io.in(socket.room).emit('message', data);
 	});
     
     socket.on('request', function(data) {
-        if(data.hasOwnProperty("uid")) {
-            console.log("User " + data["uid"] + " is currently available to chat");
-            homeless.push(data["uid"]);
-            if(homeless.length > 1) {
-                matchUser(data["uid"]);
-            }
+        console.log("User " + socket.username + " is currently available to chat");
+        homeless.push(socket);
+        if(homeless.length > 1) {
+            
+            removeElement(homeless, socket);
+    
+            var next = homeless.shift();
+            var chat = chance.guid();
+            
+            socket.join(chat);
+            socket.room = chat;
+            socket.emit('connected');
+            
+            next.join(chat);
+            next.room = chat;
+            next.emit('connected');
+            
+            console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);
         }
 	});
     
-    socket.on('leave', function(data) {
-        if(data.hasOwnProperty("uid")) {
-            var uid = data["user"];
-            console.log("User " + uid + " has left");
+    socket.on('disconnect', function(data) {
+        if(socket.room !== undefined) {
+            io.in(socket.room).emit('boot');
+        } else {
+            removeElement(homeless, socket);
         }
+        console.log("User " + socket.username + " has logged off");
     });
 });
 
