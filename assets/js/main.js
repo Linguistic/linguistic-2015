@@ -16,7 +16,9 @@ $("#send_button").click(function() {
 });
 
 socket.on('boot', function(data) {
-    $('#chat_messages ul').eq(0).append($('<li>').html("Your chat partner has disconnected.").fadeIn());  
+    $("#send_button").removeClass().addClass('uk-icon-plus');
+    $('#chat_messages ul').eq(0).append($('<li>').addClass('disconnected').html("Your chat partner has disconnected.").fadeIn());  
+    $("#send_box").val('').attr('placeholder', 'Start a new chat').prop('disabled', 'true');
 });
 
 socket.on('message', function(data) {
@@ -30,14 +32,19 @@ socket.on('message', function(data) {
     $('#chat_messages ul').eq(0).append($('<li>').addClass(css_class).html("<span>" + prepend + ": </span>" + data["msg"]).fadeIn()); 
 });
 
+var waitingState = function() {
+    $("#send_button").removeClass().addClass('uk-icon-spin uk-icon-circle-o-notch');
+    $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);   
+}
+
 socket.on('assign', function(data) {
     userid = data["user"];
     socket.emit('request');
-    $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);   
+    waitingState();
 });
 
 socket.on('connected', function(data) {
    console.log("Currently in chat with user");
    $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
-   $("#send_button").removeClass('uk-icon-spin uk-icon-circle-o-notch').addClass('uk-icon-send');
+   $("#send_button").removeClass().addClass('uk-icon-send');
 });

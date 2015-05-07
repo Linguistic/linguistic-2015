@@ -148,6 +148,10 @@ button {
 	font-weight:bold;
 }
 
+#chat_messages ul li.disconnected {
+	color:#bbb;
+}
+
 #send_form {
 	padding-left:1em;
 }
