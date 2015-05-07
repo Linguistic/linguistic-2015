@@ -11,14 +11,18 @@ $('#send_form').submit(function() {
 	return false;
 });
 
-$("#send_button").click(function() {
-	$("#send_form").submit();
-});
-
-socket.on('boot', function(data) {
+socket.on('leave', function(data) {
     $("#send_button").removeClass().addClass('uk-icon-plus');
-    $('#chat_messages ul').eq(0).append($('<li>').addClass('disconnected').html("Your chat partner has disconnected.").fadeIn());  
     $("#send_box").val('').attr('placeholder', 'Start a new chat').prop('disabled', 'true');
+    
+    $('#chat_messages ul').eq(0).append($('<li>').addClass('disconnected').html("Your chat partner has disconnected.").fadeIn());  
+    $("#send_button").click(function() {
+        $("#send_form").fadeOut();
+        socket.disconnect();
+        socket.connect();  
+    });
+    
+    $("#send_form").fadeIn();
 });
 
 socket.on('message', function(data) {
@@ -33,8 +37,13 @@ socket.on('message', function(data) {
 });
 
 var waitingState = function() {
+    $("#chat_messages ul").fadeOut(function() {
+        $(this).html('');
+        $(this).fadeIn();
+    });
     $("#send_button").removeClass().addClass('uk-icon-spin uk-icon-circle-o-notch');
     $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);   
+    $("#send_form").fadeIn();
 }
 
 socket.on('assign', function(data) {
@@ -43,8 +52,15 @@ socket.on('assign', function(data) {
     waitingState();
 });
 
-socket.on('connected', function(data) {
-   console.log("Currently in chat with user");
-   $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
-   $("#send_button").removeClass().addClass('uk-icon-send');
+socket.on('enter', function(data) {
+    console.log("Currently in chat with user");
+                           
+    $("#send_button").removeClass().addClass('uk-icon-send');
+    $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
+    
+    $("#send_button").click(function() {
+        $("#send_form").submit();
+    });
+    
+    $("#send_form").fadeIn();
 });

@@ -51,11 +51,11 @@ io.on('connection', function(socket) {
             
             socket.join(chat);
             socket.room = chat;
-            socket.emit('connected');
+            socket.emit('enter');
             
             next.join(chat);
             next.room = chat;
-            next.emit('connected');
+            next.emit('enter');
             
             console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);
         }
@@ -63,7 +63,7 @@ io.on('connection', function(socket) {
     
     socket.on('disconnect', function(data) {
         if(socket.room !== undefined) {
-            io.in(socket.room).emit('boot');
+            io.in(socket.room).emit('leave');
         } else {
             removeElement(homeless, socket);
         }
