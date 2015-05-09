@@ -23,8 +23,8 @@ require.config({
 });
 
 require(['main'], function() {
-   require(['jquery', 'class/Chat'], function($, Chat) {
-       var chat = new Chat();
-       chat.initialize();
+   require(['jquery', 'class/Welcome'], function($, Welcome) {
+       var welcome = new Welcome();
+       welcome.initialize();
    }); 
 });
