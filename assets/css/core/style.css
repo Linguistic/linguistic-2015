@@ -24,7 +24,12 @@ header {
     margin-bottom:25px;
 }
 
-header .logo {
+h1 {
+    font-family:'VegurLight', sans-serif !important; 
+    color:dimgray !important;
+}
+
+.logo {
     width:300px;
     display:block;
     margin:10px 10px;
@@ -93,7 +98,7 @@ button {
 
 #layout {
 	display:block;
-	width:978px;
+	width:1200px;
 	margin:0 auto;
 }
 

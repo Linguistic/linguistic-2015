@@ -1,44 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Linguist - Speak to the World</title>
-
-		<link rel="stylesheet" href="/fonts/vegur/stylesheet.css" />
-		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/uikit/css/uikit.almost-flat.css" />
-
+		<link rel="stylesheet" href="/assets/css/fonts/vegur/stylesheet.css" />
+		<link rel="stylesheet" href="/assets/css/core/style.css" />
+		<link rel="stylesheet" href="/node_modules/uikit/dist/css/uikit.almost-flat.css" />
 	</head>
 	<body>
 		<div id="layout">
-			<header>
-				<img src="images/logo.png" class="logo" />
-			</header>
-			<div id="chat_window">
-				<div class="fill-y">
-					<div id="chat_panel" >
+            <header>
+                <img src="/assets/img/logo.png" class="logo" />
+            </header>
 
-						<div id="chat_messages">
-							<ul>
-								<li class="status_text">You are now talking to a member from <span id="user_location">Beijing, China</span></li>
-							</ul>
-						</div>
-
-						<form id="send_form">
-							<div class="uk-grid">
-								<div lass="uk-width-1-10">
-									<i id="send_button"></i>
-								</div>
-
-								<div class="uk-width-9-10" style="padding-left:20px;">
-									<input type="text" id="send_box"></input>
-								</div>
-							</div>
-						</form>
-
-					</div>
-				</div>
-			
-			</div>
+            <div id="welcome"></div>
+            <div id="chat"></div>
 
 		</div>
     
@@ -46,9 +21,13 @@
             <ul>
             </ul>        
         </footer>
-
+        
+		<script src="/node_modules/requirejs/require.js" data-main="assets/js/core/main"></script>
+<!--
 		<script src="/jquery/jquery.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script src="/js/main.js"></script>
+        <script src="/js/lib/jquery.foggy.min.js"></script>
+		<script src="/js/core/main.js"></script>
+-->
 	</body>
 </html>
