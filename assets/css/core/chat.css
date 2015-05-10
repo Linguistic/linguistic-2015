@@ -3,6 +3,16 @@
 	height:100%;
 	display:block;
 	position:relative;
+    float:right;
+    padding:20px;
+}
+
+#side_panel .content {
+    border-radius:10px;
+    background:#eee;
+    width:100%;
+    height:90%;
+    border:1px solid lightgray;
 }
 
 #side_panel h2 {
