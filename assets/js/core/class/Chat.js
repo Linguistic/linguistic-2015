@@ -4,8 +4,19 @@ define(function(require) {
     var $  = require('jquery');
     var io = require('socketio');
     
-    // Main class
-    var Chat = function(e) {
+    /*
+     * Name: Chat()
+     * Purpose: Main class constructor
+     * Arguments:
+            String source: the language code of the language the user speaks natively
+            String dest: the language code of the language the user is learning
+     * Returns: Chat
+     */
+    var Chat = function(source, dest) {
+        
+        //Assign the language variables
+        this.source = source;
+        this.dest   = dest;
         
         // Our primary socket
         var socket = io.connect('127.0.0.1:4000');
