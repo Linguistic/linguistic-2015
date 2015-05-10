@@ -67,6 +67,7 @@ define(function(require) {
                     });
                     break;
             }
+            
             $("#send_form").fadeIn();
         }
         
@@ -77,7 +78,10 @@ define(function(require) {
          * Returns: Void
          */
         this.requestPartner = function() {
-            socket.emit('request');
+            socket.emit('request', {
+                source: self.source,
+                dest: self.dest
+            });
             updateState(WAITING);
         };
         

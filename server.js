@@ -21,6 +21,16 @@ var removeElement = function(array, element) {
     }
 };
 
+var tryMatch = function(socket) {
+    for(var i = 0; i < homeless.length; i++) {
+        if((homeless[i].source == socket.dest) &&
+           (homeless[i].dest   == socket.source)) {
+            return homeless[i];
+        }
+    }
+    return null;
+}
+
 io.on('connection', function(socket) {
     var new_user = chance.guid();
     socket.username = new_user;
@@ -32,24 +42,38 @@ io.on('connection', function(socket) {
 	});
     
     socket.on('request', function(data) {
-        console.log("User " + socket.username + " is currently available to chat");
-        homeless.push(socket);
-        if(homeless.length > 1) {
+        
+        if(data.hasOwnProperty('source') && data.hasOwnProperty('dest')) {
             
-            removeElement(homeless, socket);
-    
-            var next = homeless.shift();
-            var chat = chance.guid();
+            console.log("User " + socket.username + " is currently available to chat");
             
-            socket.join(chat);
-            socket.room = chat;
-            socket.emit('enter');
+            socket.source = data.source;
+            socket.dest   = data.dest;
             
-            next.join(chat);
-            next.room = chat;
-            next.emit('enter');
+            console.log("User " + socket.username + " is looking to speak " + data.dest + " and knows " + data.source);
+            homeless.push(socket);
             
-            console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);
+            if(homeless.length > 1) {
+                
+                var next = tryMatch(socket);
+                
+                if(next != null) {
+                    
+                    removeElement(homeless, socket);
+                    
+                    var chat = chance.guid();
+
+                    socket.join(chat);
+                    socket.room = chat;
+                    socket.emit('enter');
+
+                    next.join(chat);
+                    next.room = chat;
+                    next.emit('enter');
+
+                    console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);   
+                }
+            }
         }
 	});
     
