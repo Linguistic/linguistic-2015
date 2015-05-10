@@ -19,7 +19,7 @@ define(function(require) {
         this.dest   = dest;
         
         // Our primary socket
-        var socket = io.connect('http://localhost:4000');
+        var socket = io();
         
         // The GUID of the user
         var userid;
