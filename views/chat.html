@@ -1,7 +1,7 @@
 <div id="chat_window">
     <div class="uk-grid uk-grid-preserve fill-y no-margin" style="height:100%;">
         <div class="uk-width-3-4 fill-y no-padding" >
-            <div id="chat_panel" >
+            <div id="chat_panel">
                 <div id="chat_messages">
                     <ul>
                         <li class="status_text">You are now talking to a member from <span id="user_location">Beijing, China</span></li>
@@ -20,11 +20,17 @@
             </div> <!-- Chat panel -->
         </div> <!-- Chat panel wrapper -->
     
-        <div class="uk-width-1-4 fill-y no-padding">
+        <div class="uk-width-1-4 fill-y no-padding" style="padding:20px;">
             <div id="side_panel">
-                <div class="content">
-                    
+                <div id="contents">
+                    <div id="pic">
+                        <span class="uk-icon-user"></span>
+                    </div>
+                    <ul>
+                        <li id="title">You are currently talking to a user somewhere in the world</li>
+                    </ul>
                 </div>
+                <div id="map-canvas"></div>
             </div>
         </div>
     </div>

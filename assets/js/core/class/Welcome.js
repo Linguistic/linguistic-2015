@@ -31,21 +31,21 @@ define(function(require) {
                         $(this).addClass("selected");
                     });
 
-//                    $("#start_button").click(function() {
+                    $("#start_button").click(function() {
                         var source = $("#welcome_window #native").find(".selected");
                         var dest   = $("#welcome_window #studying").find(".selected");
-//                        if(source.length == 0 || dest.length == 0) {
-//                            $("#welcome_window #error_text").fadeIn();
-//                        } else {
+                        if(source.length == 0 || dest.length == 0) {
+                            $("#welcome_window #error_text").fadeIn();
+                        } else {
                             $("#welcome").hide();
                             var source_lang = source.eq(0).attr("data-lang");
                             var dest_lang = dest.eq(0).attr("data-lang");
                             var chat = new Chat(source_lang, dest_lang);
                             chat.initialize();    
-                        //}
-                    //}); 
+                        }
+                    }); 
                     
-                    //$("#welcome").fadeIn();
+                    $("#welcome").fadeIn();
                 });
             });
         };

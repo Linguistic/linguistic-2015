@@ -1,7 +1,8 @@
 var express = require('express');
 var app  	= express();
-var http 	= require('http').Server(app);
-var io	 	= require('socket.io')(http);
+var http    = require('http');
+var server 	= http.Server(app);
+var io	 	= require('socket.io')(server);
 
 var Chance  = require('chance'),
 chance = new Chance();
@@ -23,19 +24,43 @@ var removeElement = function(array, element) {
 
 var tryMatch = function(socket) {
     for(var i = 0; i < homeless.length; i++) {
-        if((homeless[i].source == socket.dest) &&
-           (homeless[i].dest   == socket.source)) {
-            return homeless[i];
+        var user_socket = homeless[i]
+        if((user_socket.source == socket.dest) &&
+           (user_socket.dest   == socket.source)) {
+            removeElement(homeless, user_socket);
+            return user_socket;
         }
     }
     return null;
 }
 
+var extractLocation = function(data) {
+    var data_json   = JSON.parse(data);
+    var data_loc    = data_json.loc.split(',');
+    var data_city   = data_json.city;
+    var data_region = data_json.region;
+    return {"loc":data_loc, "city":data_city, "region":data_region};
+}
+
 io.on('connection', function(socket) {
-    var new_user = chance.guid();
-    socket.username = new_user;
-    socket.emit('assign', { "user" : new_user });
-    console.log("User " + socket.username + " has logged on");
+
+    var options = {
+        host: 'ipinfo.io',
+        port: 80,
+        path: '/' + socket.request.connection.remoteAddress,
+        method: 'GET'
+    };
+                    
+    var req_socket = http.get(options, function(res_socket) {
+        res_socket.setEncoding('utf8');
+        res_socket.on('data', function (data) {
+            var new_user = chance.guid();
+            socket.location = JSON.parse(data);;
+            socket.username = new_user;
+            socket.emit('assign', { "user" : new_user });
+            console.log("User " + socket.username + " has logged on");
+        });    
+    });
     
 	socket.on('message', function(data) {
         io.in(socket.room).emit('message', data);
@@ -65,18 +90,18 @@ io.on('connection', function(socket) {
 
                     socket.join(chat);
                     socket.room = chat;
-                    socket.emit('enter');
+                    socket.emit('enter', next.location);
 
                     next.join(chat);
                     next.room = chat;
-                    next.emit('enter');
+                    next.emit('enter', socket.location);
 
                     console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);   
                 }
             }
         }
-	});
-    
+    });
+         
     socket.on('disconnect', function(data) {
         if(socket.room !== undefined) {
             io.in(socket.room).emit('leave');
@@ -87,6 +112,6 @@ io.on('connection', function(socket) {
     });
 });
 
-http.listen(4000, function() {
+server.listen(4000, function() {
 	console.log('listening on *:4000');
 });

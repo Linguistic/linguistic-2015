@@ -1,8 +1,9 @@
 define(function(require) {
     
     // Include the dependencies
-    var $  = require('jquery');
-    var io = require('socketio');
+    var $   = require('jquery');
+    var io  = require('socketio');
+    var Map = require('class/Map');
     
     /*
      * Name: Chat()
@@ -31,6 +32,9 @@ define(function(require) {
         var WAITING  = 0;
         var CHATTING = 1;
         var ENDED    = 2;
+        
+        // The Google location map
+        var map = null;
         
         /*
          * Name: updateState()
@@ -78,10 +82,11 @@ define(function(require) {
          * Returns: Void
          */
         this.requestPartner = function() {
-            socket.emit('request', {
+            var message_data = {
                 source: self.source,
                 dest: self.dest
-            });
+            };
+            socket.emit('request', message_data);
             updateState(WAITING);
         };
         
@@ -122,6 +127,8 @@ define(function(require) {
         	        return false;
                 });
             
+                map = new Map();
+                map.initialize();
             });
             
             /* * * SOCKET FUNCTIONS * * */
@@ -129,13 +136,32 @@ define(function(require) {
             // Occurs when a user is assigned a new user ID
             socket.on('assign', function(data) {
                 userid = data["user"];
-                self.requestPartner();
+                self.requestPartner();      
             });
             
             // Occurs when the user enters a chat with another user
             socket.on('enter', function(data) {
-                console.log("Currently in chat with user");
                 updateState(CHATTING);
+                
+                // Change the map accordingly
+                console.log(data);
+                if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
+                  if((p_city.length > 0) && (jQuery.trim(p_city) != "null")) {
+                        var p_loc    = data.loc.split(",");
+
+                        var p_lat    = p_loc[0];
+                        var p_lng    = p_loc[1];
+
+                        var p_city   = data.city; 
+                        var p_region = data.region;
+
+                        map.setCenter(p_lat, p_lng); 
+                        map.setZoom(8);
+                        map.setCityText(p_city + ", " + p_region);
+                    }
+                } else {
+                    console.log(data);
+                }
             });
             
             // Occurs when a user's partner disconnects from the chat
