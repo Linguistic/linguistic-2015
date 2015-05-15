@@ -3,12 +3,27 @@ define(function(require) {
     // Include the dependencies
     var $    = require('jquery');
     var Chat = require('class/Chat');
+    var Map = require('class/Map');
     
     // Main class
     var Welcome = function(e) {
 
         // Maintain the current object
         var self = this; 
+        
+        /*
+         * Name: displayError()
+         * Purpose: Prints an error with selection validation
+         * Arguments:
+                - String text: The error text to print
+         * Returns: Void
+         */
+        var displayError = function(text) {
+            $("#welcome_window #error_text").fadeOut(function() {
+                $(this).html(text);
+                $(this).fadeIn();
+            });
+        }
         
         /*
          * Name: initialize()
@@ -35,7 +50,9 @@ define(function(require) {
                         var source = $("#welcome_window #native").find(".selected");
                         var dest   = $("#welcome_window #studying").find(".selected");
                         if(source.length == 0 || dest.length == 0) {
-                            $("#welcome_window #error_text").fadeIn();
+                            displayError("Please select a language for each category first.");
+                        } else if(source.eq(0).attr("data-lang") == dest.eq(0).attr("data-lang")) {
+                            displayError("You cannot learn your native language.");
                         } else {
                             $("#welcome").hide();
                             var source_lang = source.eq(0).attr("data-lang");
@@ -44,6 +61,9 @@ define(function(require) {
                             chat.initialize();    
                         }
                     }); 
+                    
+                    map = new Map();
+                    map.initialize();
                     
                     $("#welcome").fadeIn();
                 });

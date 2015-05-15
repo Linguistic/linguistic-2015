@@ -20,6 +20,7 @@
 
 #welcome_window #selection_box {
     margin-bottom:3em;
+    padding-top:2em;
 }
 
 #welcome_window .lang_list li {
@@ -50,7 +51,7 @@
 }
 
 #welcome_window .lang_list li img {
-    width:6em;
+    width:5em;
 }
 
 #welcome_window .lang_list li .checkmark {

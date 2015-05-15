@@ -3,7 +3,6 @@ define(function(require) {
     // Include the dependencies
     var $   = require('jquery');
     var io  = require('socketio');
-    var Map = require('class/Map');
     
     /*
      * Name: Chat()

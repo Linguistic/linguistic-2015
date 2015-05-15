@@ -7,28 +7,6 @@
     position:relative;
 }
 
-#side_panel #map-canvas {
-    width:100%;
-    height:100%;
-    background:#ccc;
-    display:block;
-    position:absolute;
-    top:0;
-    left:0;
-}
-
-#side_panel::before {
-    content:'';
-    width:100%;
-    height:100%;
-    display:block;
-    background:rgba(0,0,0,0.3);
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
-}
-
 #side_panel #contents {
     position:absolute;
     top:0;
@@ -94,9 +72,9 @@
 
 #chat_window {
 	width:100%;
-	display:table;
+	display:relative;
 	margin:0 auto;
-    height:540px;
+    height:490px;
     border-collapse: collapse;
 }
 
