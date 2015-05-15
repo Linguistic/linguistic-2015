@@ -58,7 +58,7 @@ io.on('connection', function(socket) {
             socket.location = JSON.parse(data);;
             socket.username = new_user;
             socket.emit('assign', { "user" : new_user });
-            console.log("User " + socket.username + " has logged on with IP " + socket.handshake.headers.host);
+            console.log("User " + socket.username + " has logged on with IP " + socket.request.connection.remoteAddress);
         });    
     });
     
