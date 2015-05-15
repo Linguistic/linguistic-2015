@@ -58,7 +58,7 @@ io.on('connection', function(socket) {
             socket.location = JSON.parse(data);;
             socket.username = new_user;
             socket.emit('assign', { "user" : new_user });
-            console.dir(socket);
+            console.dir(socket.request.socket);
             console.log("User " + socket.username + " has logged on");
         });    
     });
