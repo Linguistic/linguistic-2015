@@ -101,7 +101,7 @@
 	font-family:'VegurRegular', sans-serif;
 }
 
-#chat_messages ul li.status_text {
+#chat_messages ul li.location_text {
 	color:gray;
 	font-weight:lighter;
     display:none;

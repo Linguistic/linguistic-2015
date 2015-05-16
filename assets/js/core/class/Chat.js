@@ -30,10 +30,25 @@ define(function(require) {
         var WAITING  = 0;
         var CHATTING = 1;
         var ENDED    = 2;
+        var DEFAULT_TIMEOUT = 400; // milliseconds
         
         // The Google location map
         var map = null;
         
+        /*
+         * Name: postMessage()
+         * Purpose: Appends a new message to the chat panel
+         * Arguments:
+         *      - String message: The content of the message to post
+         *      - String css_class: CSS class of the new list tag
+         * Returns: Void
+         */
+        var postMessage = function(message, css_class) {
+            
+                console.log("locating");
+            $('#chat_messages ul').eq(0).append($('<li>').addClass(css_class).html(message).fadeIn());
+        }
+            
         /*
          * Name: updateState()
          * Purpose: Updates the state of the UI to reflect the status of the chat
@@ -43,21 +58,22 @@ define(function(require) {
         var updateState = function(state) {
             switch(state) {
                 case WAITING:
-                    $("#chat_messages ul").fadeOut(function() {
-                        $(this).html('');
-                        $(this).fadeIn();
-                    });
                     $("#send_button").removeClass().addClass('uk-icon-spin uk-icon-circle-o-notch');
-                    $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);   
+                    $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);
+                    $("#chat_messages ul").fadeOut(DEFAULT_TIMEOUT, function() {
+                        $(this).html('');
+                    });
                     break;
                     
                 case CHATTING:
-                    $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
-                    $("#send_button").removeClass().addClass('uk-icon-send');
-                    $("#send_button").click(function() {
-                        $("#send_form").submit();
+                    $("#chat_messages ul").fadeIn(DEFAULT_TIMEOUT, function() {
+                        $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
+                        $("#send_button").removeClass().addClass('uk-icon-send');
+                        $("#send_button").click(function() {
+                            $("#send_form").submit();
+                        });
                     });
-                    console.log("Updated");
+                    console.log("chatting");
                     break;
                     
                 case ENDED:
@@ -135,24 +151,32 @@ define(function(require) {
             
             // Occurs when the user enters a chat with another user
             socket.on('enter', function(data) {
-                updateState(CHATTING);
                 
-                // Change the map accordingly
-                if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
-                  if(data.city != null && data.region != null) {
-                        var p_loc    = data.loc.split(",");
-
-                        var p_lat    = p_loc[0];
-                        var p_lng    = p_loc[1];
-
-                        var p_city   = data.city; 
-                        var p_region = data.region;
-
-                        map.setCenter(p_lat, p_lng); 
-                    }
-                } else {
-                    console.log(data);
-                }
+                // Give so leeway to allow any waiting function to finish
+                setTimeout(function() {
+                    updateState(CHATTING);
+                
+                    postMessage("You are now talking to a native speaker somewhere in the world", "location_text");
+                    $(".location_text").hide();
+    //                
+    //                // Change the map accordingly
+    //                if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
+    //                  if(data.city != null && data.region != null) {
+    //                        var p_loc    = data.loc.split(",");
+    //
+    //                        var p_lat    = p_loc[0];
+    //                        var p_lng    = p_loc[1];
+    //
+    //                        var p_city   = data.city; 
+    //                        var p_region = data.region;
+    //
+    //                        map.setCenter(p_lat, p_lng); 
+    //                        $(".location_text").html("You are now talking to a native speaker from " + p_city + ", " + p_region);
+    //                    }
+    //                } else { console.log(data); }
+                    $(".location_text").show();
+                    
+                }, DEFAULT_TIMEOUT + 100);
             });
             
             // Occurs when a user's partner disconnects from the chat
@@ -172,7 +196,7 @@ define(function(require) {
                     css_class = "me"
                 }
                 
-                $('#chat_messages ul').eq(0).append($('<li>').addClass(css_class).html("<span>" + prepend + ": </span>" + data["msg"]).fadeIn()); 
+                postMessage("<span>" + prepend + ": </span>" + data["msg"], css_class);
             });
             
         };
