@@ -104,7 +104,6 @@ define(function(require) {
                     "msg"  : message
                 });
             }
-            
         };
         
         /*
@@ -140,7 +139,7 @@ define(function(require) {
                 
                 // Change the map accordingly
                 if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
-                  if((p_city.length > 0) && (jQuery.trim(p_city) != "null")) {
+                  if(data.city != null && data.region != null) {
                         var p_loc    = data.loc.split(",");
 
                         var p_lat    = p_loc[0];
@@ -151,7 +150,6 @@ define(function(require) {
 
                         map.setCenter(p_lat, p_lng); 
                         map.setZoom(8);
-                        map.setCityText(p_city + ", " + p_region);
                     }
                 } else {
                     console.log(data);

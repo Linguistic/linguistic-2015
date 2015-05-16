@@ -46,10 +46,11 @@ var user_count = 0;
 
 io.on('connection', function(socket) {
 
+    var ip = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
     var options = {
         host: 'ipinfo.io',
         port: 80,
-        path: '/' + socket.request.connection.remoteAddress,
+        path: '/' + ip,
         method: 'GET'
     };
                     
@@ -62,10 +63,6 @@ io.on('connection', function(socket) {
             user_count++;
             socket.emit('assign', { "user" : new_user });
             io.emit('update_count', user_count);
-            var ip = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
-            console.log(ip);
-            console.log(socket.handshake.address); 
-            console.log(socket.client.conn.remoteAddress); 
             console.log("User " + socket.username + " has logged on");
         });    
     });

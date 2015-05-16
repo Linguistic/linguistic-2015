@@ -26,10 +26,6 @@ define(function(require) {
         this.setZoom = function(zoomLevel) {
             map.setZoom(zoomLevel);
         }
-        
-        this.setCityText = function(text) {
-            $("#side_panel #title").html("You are now talking to a user from " + text);
-        }
     }
     
     return Map;
