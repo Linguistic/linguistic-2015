@@ -158,22 +158,22 @@ define(function(require) {
                 
                     postMessage("You are now talking to a native speaker somewhere in the world", "location_text");
                     $(".location_text").hide();
-    //                
-    //                // Change the map accordingly
-    //                if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
-    //                  if(data.city != null && data.region != null) {
-    //                        var p_loc    = data.loc.split(",");
-    //
-    //                        var p_lat    = p_loc[0];
-    //                        var p_lng    = p_loc[1];
-    //
-    //                        var p_city   = data.city; 
-    //                        var p_region = data.region;
-    //
-    //                        map.setCenter(p_lat, p_lng); 
-    //                        $(".location_text").html("You are now talking to a native speaker from " + p_city + ", " + p_region);
-    //                    }
-    //                } else { console.log(data); }
+                    
+                    // Change the map accordingly
+                    if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
+                      if(data.city != null && data.region != null) {
+                            var p_loc    = data.loc.split(",");
+    
+                            var p_lat    = p_loc[0];
+                            var p_lng    = p_loc[1];
+    
+                            var p_city   = data.city; 
+                            var p_region = data.region;
+    
+                            map.setCenter(p_lat, p_lng); 
+                            $(".location_text").html("You are now talking to a native speaker from " + p_city + ", " + p_region);
+                        }
+                    } else { console.log(data); }
                     $(".location_text").show();
                     
                 }, DEFAULT_TIMEOUT + 100);
