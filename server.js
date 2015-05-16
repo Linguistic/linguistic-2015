@@ -42,6 +42,8 @@ var extractLocation = function(data) {
     return {"loc":data_loc, "city":data_city, "region":data_region};
 }
 
+var user_count = 0;
+
 io.on('connection', function(socket) {
 
     var options = {
@@ -57,8 +59,9 @@ io.on('connection', function(socket) {
             var new_user = chance.guid();
             socket.location = JSON.parse(data);;
             socket.username = new_user;
+            user_count++;
             socket.emit('assign', { "user" : new_user });
-            console.dir(socket.request.socket);
+            io.emit('update_count', user_count);
             console.log("User " + socket.username + " has logged on");
         });    
     });
@@ -91,10 +94,12 @@ io.on('connection', function(socket) {
 
                     socket.join(chat);
                     socket.room = chat;
+                    socket.partner = next;
                     socket.emit('enter', next.location);
 
                     next.join(chat);
                     next.room = chat;
+                    next.partner = socket;
                     next.emit('enter', socket.location);
 
                     console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);   
@@ -104,11 +109,15 @@ io.on('connection', function(socket) {
     });
          
     socket.on('disconnect', function(data) {
-        if(socket.room !== undefined) {
+        if((socket.room !== undefined) && (socket.partner !== undefined)) {
+            socket.partner.room = undefined;
+            socket.partner.leave(socket.room);
             io.in(socket.room).emit('leave');
         } else {
             removeElement(homeless, socket);
         }
+        user_count--;
+        io.emit('update_count', user_count);
         console.log("User " + socket.username + " has logged off");
     });
 });

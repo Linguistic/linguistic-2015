@@ -23,8 +23,23 @@ require.config({
 });
 
 require(['main'], function() {
-   require(['jquery', 'class/Welcome'], function($, Welcome) {
-       var welcome = new Welcome();
-       welcome.initialize();
+   require(['jquery', 'class/Welcome', 'socketio'], function($, Welcome, io) {
+       
+        var socket = io();
+
+        // Occurs when a new user logs in or out
+        socket.on('update_count', function(count) {
+            $("#user_count").html(count + " people online");
+        });
+       
+        // Occurs when a user is assigned a new user ID
+        socket.on('assign', function(data) {
+            var user = data["user"];
+            var welcome = new Welcome(user, socket);
+            welcome.initialize();
+        });
+
+
+    
    }); 
 });

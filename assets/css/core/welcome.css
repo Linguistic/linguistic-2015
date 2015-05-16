@@ -8,6 +8,7 @@
 #welcome_window #start_button {
     margin:10px auto;
     display:block;
+    font-family:'VegurRegular', sans-serif;
 }
 
 #welcome_window #error_text {

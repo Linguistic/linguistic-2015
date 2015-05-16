@@ -2,7 +2,6 @@ define(function(require) {
     
     // Include the dependencies
     var $   = require('jquery');
-    var io  = require('socketio');
     
     /*
      * Name: Chat()
@@ -12,17 +11,17 @@ define(function(require) {
             String dest: the language code of the language the user is learning
      * Returns: Chat
      */
-    var Chat = function(source, dest) {
+    var Chat = function(source, dest, user, sock) {
         
         //Assign the language variables
         this.source = source;
         this.dest   = dest;
         
         // Our primary socket
-        var socket = io();
-        
+        var socket = sock;
+                
         // The GUID of the user
-        var userid;
+        var userid = user;
         
         // Maintain the current object
         var self = this; 
@@ -58,6 +57,7 @@ define(function(require) {
                     $("#send_button").click(function() {
                         $("#send_form").submit();
                     });
+                    console.log("Updated");
                     break;
                     
                 case ENDED:
@@ -98,10 +98,12 @@ define(function(require) {
          */
         this.sendMessage = function(message) {
             
-            socket.emit('message', {
-                "user" : userid,
-                "msg"  : message
-            });
+            if(jQuery.trim(message).length != 0) {
+                socket.emit('message', {
+                    "user" : userid,
+                    "msg"  : message
+                });
+            }
             
         };
         
@@ -111,12 +113,13 @@ define(function(require) {
          * Arguments: None
          * Returns: Void
          */
-        this.initialize = function() {
+        this.initialize = function(map) {
             
+            this.map = map;
+                
             // Retrieve the HTML from our view directory
             $.get("views/chat.html", function(html) {
-                
-                // Load the HTML into the chat DIV
+               // Load the HTML into the chat DIV
                 $("#chat").html(html);
                 
                 // Send a message when the chat form is submitted
@@ -125,25 +128,17 @@ define(function(require) {
                     $("#send_box").val('');
         	        return false;
                 });
-            
-                map = new Map();
-                map.initialize();
+                
+                self.requestPartner();  
             });
             
             /* * * SOCKET FUNCTIONS * * */
-            
-            // Occurs when a user is assigned a new user ID
-            socket.on('assign', function(data) {
-                userid = data["user"];
-                self.requestPartner();      
-            });
             
             // Occurs when the user enters a chat with another user
             socket.on('enter', function(data) {
                 updateState(CHATTING);
                 
                 // Change the map accordingly
-                console.log(data);
                 if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
                   if((p_city.length > 0) && (jQuery.trim(p_city) != "null")) {
                         var p_loc    = data.loc.split(",");

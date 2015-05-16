@@ -6,10 +6,13 @@ define(function(require) {
     var Map = require('class/Map');
     
     // Main class
-    var Welcome = function(e) {
+    var Welcome = function(user, sock) {
 
         // Maintain the current object
         var self = this; 
+        
+        var socket = sock; 
+        var userid = user;
         
         /*
          * Name: displayError()
@@ -31,7 +34,7 @@ define(function(require) {
          * Arguments: None
          * Returns: Void
          */
-        this.initialize = function() {
+        this.initialize = function(map) {
             
             // Retrieve the HTML from our view directory
             $.get("views/welcome.html", function(html) {
@@ -57,12 +60,12 @@ define(function(require) {
                             $("#welcome").hide();
                             var source_lang = source.eq(0).attr("data-lang");
                             var dest_lang = dest.eq(0).attr("data-lang");
-                            var chat = new Chat(source_lang, dest_lang);
-                            chat.initialize();    
+                            var chat = new Chat(source_lang, dest_lang, userid, socket);
+                            chat.initialize(map);    
                         }
                     }); 
                     
-                    map = new Map();
+                    var map = new Map();
                     map.initialize();
                     
                     $("#welcome").fadeIn();
