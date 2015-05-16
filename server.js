@@ -8,7 +8,7 @@ var Chance  = require('chance'),
 chance = new Chance();
 
 app.use('/', express.static(__dirname));
-app.get('/', function(req, res) {
+app.get('/', function(req, res) {        
 	res.sendFile(__dirname + '/index.html');
 });
 
@@ -62,6 +62,10 @@ io.on('connection', function(socket) {
             user_count++;
             socket.emit('assign', { "user" : new_user });
             io.emit('update_count', user_count);
+            var ip = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
+            console.log(ip);
+            console.log(socket.handshake.address); 
+            console.log(socket.client.conn.remoteAddress); 
             console.log("User " + socket.username + " has logged on");
         });    
     });
@@ -102,7 +106,7 @@ io.on('connection', function(socket) {
                     next.partner = socket;
                     next.emit('enter', socket.location);
 
-                    console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);   
+                    console.log("User " + socket.username + " has entered a chat with " + next.username + " in room " + socket.room);
                 }
             }
         }
