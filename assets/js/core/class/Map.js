@@ -8,7 +8,7 @@ define(function(require) {
             var mapCanvas = document.getElementById("map-canvas");
             var mapOptions = { 
                 center: new google.maps.LatLng(44.5403, -78.5463),
-                zoom: 16,
+                zoom: 14,
                 mapTypeId: google.maps.MapTypeId.SATELLITE,
                 disableDefaultUI: true
             };
