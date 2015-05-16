@@ -149,7 +149,6 @@ define(function(require) {
                         var p_region = data.region;
 
                         map.setCenter(p_lat, p_lng); 
-                        map.setZoom(8);
                     }
                 } else {
                     console.log(data);
