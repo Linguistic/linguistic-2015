@@ -111,9 +111,9 @@ io.on('connection', function(socket) {
          
     socket.on('disconnect', function(data) {
         if((socket.room !== undefined) && (socket.partner !== undefined)) {
-            socket.partner.room = undefined;
-            socket.partner.leave(socket.room);
             io.in(socket.room).emit('leave');
+            socket.partner.leave(socket.room);
+            socket.partner.room = undefined;
         } else {
             removeElement(homeless, socket);
         }
