@@ -36,16 +36,14 @@ define(function(require) {
         var map = null;
         
         /*
-         * Name: postMessage()
+         * Name: pushMessage()
          * Purpose: Appends a new message to the chat panel
          * Arguments:
          *      - String message: The content of the message to post
          *      - String css_class: CSS class of the new list tag
          * Returns: Void
          */
-        var postMessage = function(message, css_class) {
-            
-                console.log("locating");
+        var pushMessage = function(message, css_class) {
             $('#chat_messages ul').eq(0).append($('<li>').addClass(css_class).html(message).fadeIn());
         }
             
@@ -59,6 +57,7 @@ define(function(require) {
             switch(state) {
                 case WAITING:
                     $("#send_button").removeClass().addClass('uk-icon-spin uk-icon-circle-o-notch');
+                    $("#send_button").click(function() {});
                     $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);
                     $("#chat_messages ul").fadeOut(DEFAULT_TIMEOUT, function() {
                         $(this).html('');
@@ -67,22 +66,21 @@ define(function(require) {
                     
                 case CHATTING:
                     $("#chat_messages ul").fadeIn(DEFAULT_TIMEOUT, function() {
-                        $("#send_box").attr('placeholder', 'Click here to start typing').prop('disabled', false);
-                        $("#send_button").removeClass().addClass('uk-icon-send');
+                        $("#send_box").attr('placeholder', 'Click here to start typing (press \'Esc\' to disconnect)').prop('disabled', false);
+                        $("#send_button").removeClass().addClass('uk-icon-send send clickable');
                         $("#send_button").click(function() {
                             $("#send_form").submit();
                         });
                     });
-                    console.log("chatting");
                     break;
                     
                 case ENDED:
-                    $('#chat_messages ul').eq(0).append($('<li>').addClass('disconnected').html("Your chat partner has disconnected.").fadeIn());  
                     $("#send_box").val('').attr('placeholder', 'Start a new chat').prop('disabled', 'true');
-                    $("#send_button").removeClass().addClass('uk-icon-plus');
+                    $("#send_button").removeClass().addClass('uk-icon-plus new clickable');
                     $("#send_button").click(function() {
-                        $("#send_form").fadeOut();
-                        self.requestPartner(); 
+                        $("#send_form").fadeOut(DEFAULT_TIMEOUT, function() {
+                            self.requestPartner();  
+                        });
                     });
                     break;
             }
@@ -144,6 +142,15 @@ define(function(require) {
         	        return false;
                 });
                 
+                // Disconnects if the user hits 'esc'
+                $(document.body).keyup(function(e) {
+                    if(e.which == 27) {
+                        socket.emit('leave');
+                        pushMessage('You have disconnected', 'disconnected');
+                        updateState(ENDED);
+                    }
+                });
+                
                 self.requestPartner();  
             });
             
@@ -151,12 +158,12 @@ define(function(require) {
             
             // Occurs when the user enters a chat with another user
             socket.on('enter', function(data) {
+                updateState(CHATTING);
                 
                 // Give so leeway to allow any waiting function to finish
                 setTimeout(function() {
-                    updateState(CHATTING);
                 
-                    postMessage("You are now talking to a native speaker somewhere in the world", "location_text");
+                    pushMessage("You are now talking to a native speaker somewhere in the world", "location_text");
                     $(".location_text").hide();
                     
                     // Change the map accordingly
@@ -180,7 +187,8 @@ define(function(require) {
             });
             
             // Occurs when a user's partner disconnects from the chat
-            socket.on('leave', function(data) {
+            socket.on('ended', function(data) {
+                pushMessage("Your chat partner has disconnected.", 'disconnected');  
                 updateState(ENDED);
             });
             
@@ -196,7 +204,7 @@ define(function(require) {
                     css_class = "me"
                 }
                 
-                postMessage("<span>" + prepend + ": </span>" + data["msg"], css_class);
+                pushMessage("<span>" + prepend + ": </span>" + data["msg"], css_class);
             });
             
         };

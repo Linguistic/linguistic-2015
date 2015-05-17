@@ -42,6 +42,27 @@ var extractLocation = function(data) {
     return {"loc":data_loc, "city":data_city, "region":data_region};
 }
 
+var leaveRoom = function(socket) {
+    if((socket.room !== undefined) && 
+       (socket.partner !== undefined) &&
+       (socket.partner.room == socket.room)) {
+        
+        var room = socket.room;
+        
+        socket.leave(room);
+        io.in(room).emit('ended');
+        socket.partner.leave(room);
+        
+        socket.room == undefined;
+        socket.partner.room = undefined;
+        
+        return true;
+        
+    } else {
+        return false;
+    }
+}
+
 var user_count = 0;
 
 io.on('connection', function(socket) {
@@ -108,15 +129,13 @@ io.on('connection', function(socket) {
             }
         }
     });
-         
+        
+    socket.on('leave', function(data) {
+        leaveRoom(socket);
+    });
+    
     socket.on('disconnect', function(data) {
-        if((socket.room !== undefined) && (socket.partner !== undefined)) {
-            io.in(socket.room).emit('leave');
-            socket.partner.leave(socket.room);
-            socket.partner.room = undefined;
-        } else {
-            removeElement(homeless, socket);
-        }
+        if(!leaveRoom(socket)) { removeElement(homeless, socket); }
         user_count--;
         io.emit('update_count', user_count);
         console.log("User " + socket.username + " has logged off");

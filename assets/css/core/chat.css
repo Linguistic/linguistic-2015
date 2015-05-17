@@ -1,72 +1,23 @@
-#side_panel {
-    background:#eee;
-    width:100%;
-    height:100%;
-    border:1px solid lightgray;
-    overflow:hidden;
-    position:relative;
-}
-
-#side_panel #contents {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:2;
-}
-
-#side_panel #contents #pic {
-	display:block;
-	margin:0 auto;
-	width:8em;
-	height:8em;
-	z-index:2;
-    background:#22313F;
-    border-radius:100px;
-    -webkit-border-radius:100px;
-    border:6px solid white;
-    margin-top:25px;
-    color:white;
-    text-align:center;
-    overflow:hidden;
-}
-
-#side_panel #contents ul {
-    color:white;
-    padding:0;
-    margin:0;
-    list-style: none;
-}
-
-#side_panel #contents ul li {
-    text-align:center;
-    padding:25px;
-}
-
-#side_panel #contents #pic span {
-    font-size:4em;
-    line-height:2em;
-    height:100%;
-    width:100%;
-    display:block;
-}
-
-#side_panel h3 {
-	text-align:center;
-	font-size:1.5em;
-	font-family:'VegurRegular', sans-serif;
-	color:#555;
+.clickable {
+    cursor:pointer; 
 }
 
 #send_button {
 	color:lightgray;
 	font-size:1.5em;
-	cursor:pointer;
+    transition:all 0.25s ease-in-out;
+    -khtml-transition:all 0.25s ease-in-out;
+    -o-transition:all 0.25s ease-in-out;
+    -ms-transition:all 0.25s ease-in-out;
+    -webkit-transition:all 0.25s ease-in-out;
 }
 
-#send_button:hover {
+#send_button.send:hover {
 	color:#F9BF3B;
+}
+
+#send_button.new:hover {
+    color:#555;
 }
 
 #chat_window {
