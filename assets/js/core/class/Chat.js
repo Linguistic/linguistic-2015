@@ -43,8 +43,25 @@ define(function(require) {
          *      - String css_class: CSS class of the new list tag
          * Returns: Void
          */
-        var pushMessage = function(message, css_class) {
-            $('#chat_messages ul').eq(0).append($('<li>').addClass(css_class).html(message).fadeIn());
+        var pushMessage = function(message, css_class, id) {
+            
+            // Create the element
+            var $message_bullet = $('<li>').addClass(css_class).html(message);
+            if(id !== undefined && id !== null) {
+                if(jQuery.trim(id).length != 0) {
+                    $message_bullet.attr('id', id);
+                }    
+            }
+            
+            // Post text above any special text (such as 'user is typing')
+            // Otherwise, post regularly
+            var prepends = $("#chat_messages ul .prepend");
+            if(prepends.length != 0) {
+                var last_prepend = prepends.eq(prepends.length - 1);    
+                last_prepend.before($message_bullet.fadeIn());
+            } else {
+                $('#chat_messages ul').eq(0).append($message_bullet.fadeIn());    
+            }
         }
             
         /*
@@ -66,11 +83,28 @@ define(function(require) {
                     
                 case CHATTING:
                     $("#chat_messages ul").fadeIn(DEFAULT_TIMEOUT, function() {
+                        
+                        var timer;
                         $("#send_box").attr('placeholder', 'Click here to start typing (press \'Esc\' to disconnect)').prop('disabled', false);
+                        $("#send_box").keyup(function() {
+                            clearTimeout(timer);
+                            timer = setTimeout(function() {
+                                socket.emit("typing_stop", { method: 'soft' });
+                            }, 1000);
+                        });
+                        $("#send_box").keydown(function(e) {
+                            if(e.which > 32) {
+                                clearTimeout(timer); 
+                                socket.emit("typing_start");   
+                            }
+                        });
+                        
                         $("#send_button").removeClass().addClass('uk-icon-send send clickable');
                         $("#send_button").click(function() {
+                            socket.emit("typing_stop", { method: 'hard' });
                             $("#send_form").submit();
                         });
+                        
                     });
                     break;
                     
@@ -163,8 +197,8 @@ define(function(require) {
                 // Give so leeway to allow any waiting function to finish
                 setTimeout(function() {
                 
-                    pushMessage("You are now talking to a native speaker somewhere in the world", "location_text");
-                    $(".location_text").hide();
+                    pushMessage("You are now talking to a native speaker somewhere in the world", "status_text", "location_tag");
+                    $("#location_tag").hide();
                     
                     // Change the map accordingly
                     if(data.hasOwnProperty("loc") && data.hasOwnProperty("city") && data.hasOwnProperty('region')) {
@@ -181,9 +215,31 @@ define(function(require) {
                             $(".location_text").html("You are now talking to a native speaker from " + p_city + ", " + p_region);
                         }
                     } else { console.log(data); }
-                    $(".location_text").show();
+                    $("#location_tag").show();
                     
                 }, DEFAULT_TIMEOUT + 100);
+            });
+            
+            // Occurs when the partner begins to type
+            socket.on('typing_start', function(data) {
+                if($("#typing_tag").length == 0) {
+                    pushMessage("Your partner is typing...", "status_text prepend", "typing_tag");   
+                }
+            });
+            
+            // Occurs when the partner stops typing
+            socket.on('typing_stop', function(data) {
+                if(data.hasOwnProperty('method')) {
+                    if($("#typing_tag").length != 0) {
+                        if(data.method == 'soft') {
+                            $("#typing_tag").fadeOut(function() {
+                                $(this).remove();    
+                            });     
+                        } else if (data.method == 'hard') {
+                            $("#typing_tag").remove();
+                        }
+                    }    
+                }
             });
             
             // Occurs when a user's partner disconnects from the chat

@@ -130,6 +130,14 @@ io.on('connection', function(socket) {
         }
     });
         
+    socket.on('typing_start', function(data) {
+        socket.broadcast.emit('typing_start');
+    });
+    
+    socket.on('typing_stop', function(data) {
+        socket.broadcast.emit('typing_stop', data);
+    });
+    
     socket.on('leave', function(data) {
         leaveRoom(socket);
     });
