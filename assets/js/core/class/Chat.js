@@ -82,9 +82,32 @@ define(function(require) {
                     break;
                     
                 case CHATTING:
+                    
+                    // Fade in the chat messages
                     $("#chat_messages ul").fadeIn(DEFAULT_TIMEOUT, function() {
                         
+                        // Timer to determine when user is typing
                         var timer;
+                        
+                        // Disconnects if the user hits 'esc'
+                        $(document.body).keyup(function(e) {
+                            if(e.which == 27) {
+                                socket.emit('leave');
+                                pushMessage('You have disconnected', 'disconnected');
+                                updateState(ENDED);
+                            }
+                        });
+                
+                        // Send a message when the chat form is submitted
+                        $('#send_form').submit(function() {
+                            clearTimeout(timer);
+                            socket.emit("typing_stop", { method: 'hard' });
+                            self.sendMessage($("#send_box").val());
+                            $("#send_box").val('');
+                            return false;
+                        });
+                    
+                        // Format textbox and write hooks to determine when user is typing
                         $("#send_box").attr('placeholder', 'Click here to start typing (press \'Esc\' to disconnect)').prop('disabled', false);
                         $("#send_box").keyup(function() {
                             clearTimeout(timer);
@@ -99,9 +122,9 @@ define(function(require) {
                             }
                         });
                         
+                        // Enable the send message button
                         $("#send_button").removeClass().addClass('uk-icon-send send clickable');
                         $("#send_button").click(function() {
-                            socket.emit("typing_stop", { method: 'hard' });
                             $("#send_form").submit();
                         });
                         
@@ -166,25 +189,10 @@ define(function(require) {
                 
             // Retrieve the HTML from our view directory
             $.get("views/chat.html", function(html) {
-               // Load the HTML into the chat DIV
+                // Load the HTML into the chat DIV
                 $("#chat").html(html);
                 
-                // Send a message when the chat form is submitted
-                $('#send_form').submit(function() {
-                    self.sendMessage($("#send_box").val());
-                    $("#send_box").val('');
-        	        return false;
-                });
-                
-                // Disconnects if the user hits 'esc'
-                $(document.body).keyup(function(e) {
-                    if(e.which == 27) {
-                        socket.emit('leave');
-                        pushMessage('You have disconnected', 'disconnected');
-                        updateState(ENDED);
-                    }
-                });
-                
+                // Request a partner
                 self.requestPartner();  
             });
             
