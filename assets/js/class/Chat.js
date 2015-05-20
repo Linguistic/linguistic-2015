@@ -220,7 +220,7 @@ define(function(require) {
                             var p_region = data.region;
     
                             map.setCenter(p_lat, p_lng); 
-                            $(".location_text").html("You are now talking to a native speaker from " + p_city + ", " + p_region);
+                            $("#location_tag").html("You are now talking to a native speaker from " + p_city + ", " + p_region);
                         }
                     } else { console.log(data); }
                     $("#location_tag").show();
