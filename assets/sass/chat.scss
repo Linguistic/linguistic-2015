@@ -1,0 +1,95 @@
+.clickable {
+    cursor:pointer; 
+}
+
+#send_button {
+	color:lightgray;
+	font-size:1.5em;
+    transition:all 0.25s ease-in-out;
+    -khtml-transition:all 0.25s ease-in-out;
+    -o-transition:all 0.25s ease-in-out;
+    -ms-transition:all 0.25s ease-in-out;
+    -webkit-transition:all 0.25s ease-in-out;
+    
+    &.send {
+        &:hover {
+	       color:#F9BF3B;
+        }
+    }
+    
+    &.new {
+        &:hover {
+            color:#555;
+        }
+    }
+}
+
+#chat_window {
+	width:100%;
+	display:relative;
+	margin:0 auto;
+    height:435px;
+    padding-top:25px;
+    border-collapse: collapse;
+    
+    #chat_messages {
+        height:88%;
+        width:100%;
+        display:block;
+        position:relative;
+        overflow:auto;
+
+        ul {
+           list-style:none;
+
+            li {
+                padding:2px;
+                color:#5b5b5b;
+                padding-left:10px;
+                font-family:'VegurRegular', sans-serif;
+                text-align:left;
+
+                &.me {
+                    span {
+                       color:#4183D7;
+                       font-weight:bold;
+                    }
+                }
+
+                &.them {
+                    span {
+                        color:#E74C3C;
+                        font-weight:bold;
+                    }
+                }
+
+                &.status_text {
+                    color:gray;
+                    font-weight:lighter;
+                    display:none;
+                }
+
+                &.disconnected {
+                   color:#bbb;
+                }
+            }
+        }
+    }
+}
+
+#send_form {
+    display:block;
+    height:12%;
+    width:100%;
+    
+    .inner {
+        padding:15px;
+        
+        #send_box {
+            width:100%;
+            line-height:1.3em;
+            font-family:'VegurLight', sans-serif;
+            font-weight:lighter;
+        }
+    }
+}

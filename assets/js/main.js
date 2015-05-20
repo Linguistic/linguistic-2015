@@ -7,7 +7,7 @@
 
 // Initialize require.js
 require.config({
-    baseUrl: '/assets/js/core',
+    baseUrl: '/assets/js/',
     paths: {
         jquery:   '/node_modules/jquery/dist/jquery.min',
         socketio: '/socket.io/socket.io'
