@@ -1,0 +1,29 @@
+@mixin transition($attr, $seconds) {
+    -webkit-transition:$attr $seconds ease-in-out;
+    -moz-transition:$attr $seconds ease-in-out;
+    -ms-transition:$attr $seconds ease-in-out;
+    -o-transition:$attr $seconds ease-in-out;
+    transition:$attr $seconds ease-in-out;
+}
+
+@mixin opacity($opacity) {
+    filter: alpha(opacity=($opacity*100));
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + ($opacity * 100) + ")";
+    -moz-opacity: $opacity;
+    -khtml-opacity: $opacity;
+    opacity: $opacity;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius:$radius;
+    -moz-border-radius:$radius;
+    -ms-border-radius:$radius;
+    -o-border-radius:$radius;
+    border-radius:$radius;
+}
+
+@mixin box-shadow($x_offset, $y_offset, $blur_radius, $color) {
+	box-shadow: $x_offset $y_offset $blur_radius $color;
+    -moz-box-shadow: $x_offset $y_offset $blur_radius $color;
+	-webkit-box-shadow: $x_offset $y_offset $blur_radius $color;
+}

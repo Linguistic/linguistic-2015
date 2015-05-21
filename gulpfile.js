@@ -6,7 +6,7 @@ var sass    = require('gulp-sass');
 var concat  = require('gulp-concat');
 var uglify  = require('gulp-uglify');
 var minify  = require('gulp-minify-css');
-var nodemon = require('gulp-nodemon');
+var shell   = require('gulp-shell');
 
 gulp.task('clean', function() {
     del([
@@ -25,7 +25,9 @@ gulp.task('sass', function() {
     return gulp.src('assets/sass/*.scss')
         .pipe(concat('main.css'))
         .pipe(gulp.dest('./'))
-        .pipe(sass())
+        .pipe(sass({
+            includePaths: ["./assets/sass"]
+        }))
         .pipe(minify())
         .pipe(gulp.dest('dist'));
 });
@@ -42,11 +44,5 @@ gulp.task('watch', function() {
     gulp.watch('assets/scss/*.scss', ['sass']);
 });
 
-gulp.task('server', function() {
-    nodemon({ 
-        script: 'app.js',
-        ext: 'js scss html'
-    });
-});
-
+gulp.task('server', shell.task(['node server.js']));
 gulp.task('default', ['clean', 'lint', 'sass', 'scripts', 'server']);

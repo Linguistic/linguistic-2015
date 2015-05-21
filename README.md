@@ -6,10 +6,10 @@ The concept of chatroulette has gotten a bad rep over the past few years. Sites 
 
 To start Linguist, simply `cd` into Linguist's home directory and run the following two commands:
 
-	$ npm install
-	$ node server.js
+	$ npm install --production
+	$ gulp
 		
-Fire up any web browser and go to http://localhost:4000. There you have it, a local copy of Linguist!
+Once the gulp build has finished, fire up any web browser and go to http://localhost:4000. There you have it, a local copy of Linguist! Alternatively, you can install all dependencies (including development dependencies) by just running `npm install`.
 
 ## Configuring Nginx
 
