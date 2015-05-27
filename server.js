@@ -4,14 +4,33 @@ var app     = express();
 var http    = require('http');
 var server  = http.Server(app);
 var io      = require('socket.io')(server);
+var i18n    = require('i18n-abide');
 
 var Chance  = require('chance'),
 chance = new Chance();
 
-// Set up basic URL routing
+// Preconfig
 app.use('/', express.static(__dirname));
-app.get('/', function(req, res) {        
-	res.sendFile(__dirname + '/index.html');
+app.use(i18n.abide({
+    supported_languages: ['en-US', 'zh'],
+    default_lang: 'en-US',
+    translation_directory: 'locale',
+}));
+
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
+// Set up basic URL routing
+app.get('/', function(req, res) {   
+    res.render('index');
+});
+
+app.get('/views/welcome', function(req, res) {        
+    res.render('welcome');
+});
+
+app.get('/views/chat', function(req, res) {        
+    res.render('chat');
 });
 
 // The number of users online

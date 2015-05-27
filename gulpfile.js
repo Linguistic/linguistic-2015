@@ -7,6 +7,9 @@ var concat  = require('gulp-concat');
 var uglify  = require('gulp-uglify');
 var minify  = require('gulp-minify-css');
 var shell   = require('gulp-shell');
+var glob    = require('glob');
+
+var COMPILE_DIRECTORY = 'bin';
 
 gulp.task('clean', function() {
     del([
@@ -16,33 +19,28 @@ gulp.task('clean', function() {
 });
 
 gulp.task('lint', function() {
-    return gulp.src('assets/js/core/*.js')
+    return gulp.src('static/js/core/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 gulp.task('sass', function() {
-    return gulp.src('assets/sass/*.scss')
-        .pipe(concat('main.css'))
-        .pipe(gulp.dest('./'))
+    return gulp.src('static/sass/*.scss')
+        .pipe(concat('main.min.css'))
+        .pipe(gulp.dest(COMPILE_DIRECTORY))
         .pipe(sass({
-            includePaths: ["./assets/sass"]
+            includePaths: ["static/sass"]
         }))
         .pipe(minify())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest(COMPILE_DIRECTORY));
 });
 
 gulp.task('scripts', function() {
-   return gulp.src('assets/js/*.js')
-        .pipe(concat('main.js'))
+    return gulp.src('static/js/*.js')
+        .pipe(concat('main.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist'))
-});
-
-gulp.task('watch', function() {
-    gulp.watch('assets/js/*.js', ['lint', 'scripts']);
-    gulp.watch('assets/scss/*.scss', ['sass']);
+        .pipe(gulp.dest(COMPILE_DIRECTORY))
 });
 
 gulp.task('server', shell.task(['node server.js']));
-gulp.task('default', ['clean', 'lint', 'sass', 'scripts', 'server']);
+gulp.task('default', ['clean', 'lint', 'sass', 'scripts']);

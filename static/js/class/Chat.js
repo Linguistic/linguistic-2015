@@ -26,11 +26,16 @@ define(function(require) {
         // Maintain the current object
         var self = this; 
         
-        // Variables 'constants'
+        // Constants
         var WAITING  = 0;
         var CHATTING = 1;
         var ENDED    = 2;
         var DEFAULT_TIMEOUT = 400; // milliseconds
+        
+        // Global strings
+        var CHAT_PLACEHOLDER = gettext('Click here to start typing (press \'Esc\' to disconnect)');
+        var WAIT_TEXT        = gettext('Waiting for a chat partner...');
+        var NEW_TEXT         = gettext('Start a new chat');
         
         // The Google location map
         var map = null;
@@ -75,7 +80,7 @@ define(function(require) {
                 case WAITING:
                     $("#send_button").removeClass().addClass('uk-icon-spin uk-icon-circle-o-notch');
                     $("#send_button").click(function() {});
-                    $("#send_box").attr('placeholder', 'Waiting for a chat partner...').prop('disabled', true);
+                    $("#send_box").attr('placeholder', WAIT_TEXT).prop('disabled', true);
                     $("#chat_messages ul").fadeOut(DEFAULT_TIMEOUT, function() {
                         $(this).html('');
                     });
@@ -108,7 +113,7 @@ define(function(require) {
                         });
                     
                         // Format textbox and write hooks to determine when user is typing
-                        $("#send_box").attr('placeholder', 'Click here to start typing (press \'Esc\' to disconnect)').prop('disabled', false);
+                        $("#send_box").attr('placeholder', CHAT_PLACEHOLDER).prop('disabled', false);
                         $("#send_box").keyup(function() {
                             clearTimeout(timer);
                             timer = setTimeout(function() {
@@ -132,7 +137,7 @@ define(function(require) {
                     break;
                     
                 case ENDED:
-                    $("#send_box").val('').attr('placeholder', 'Start a new chat').prop('disabled', 'true');
+                    $("#send_box").val('').attr('placeholder', NEW_TEXT).prop('disabled', 'true');
                     $("#send_button").removeClass().addClass('uk-icon-plus new clickable');
                     $("#send_button").click(function() {
                         $("#send_form").fadeOut(DEFAULT_TIMEOUT, function() {
@@ -188,7 +193,7 @@ define(function(require) {
             this.map = map;
                 
             // Retrieve the HTML from our view directory
-            $.get("views/chat.html", function(html) {
+            $.get("views/chat", function(html) {
                 // Load the HTML into the chat DIV
                 $("#chat").html(html);
                 

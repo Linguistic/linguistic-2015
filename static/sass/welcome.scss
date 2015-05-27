@@ -20,6 +20,7 @@
                 margin:0px 10px 0px 0px;
                 position:relative;
                 cursor:pointer;
+                border-left:1px solid white;
                 
                 &.selected {
                     @include opacity(1.0);
@@ -29,9 +30,14 @@
                     @include opacity(1.0);
                 }
                 
+                &:first-child {
+                    border-left:none;
+                }
+                
                 img {
                     width:5em;
                 }
+                
             }
         }
     }

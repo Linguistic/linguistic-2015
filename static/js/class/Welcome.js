@@ -14,6 +14,10 @@ define(function(require) {
         var socket = sock; 
         var userid = user;
         
+        // String constants
+        var ERR_LEARN_OWN_LANG = gettext('You cannot learn your native language');
+        var ERR_SELECTION = gettext('Please select a language for each category first');
+        
         /*
          * Name: displayError()
          * Purpose: Prints an error with selection validation
@@ -37,7 +41,7 @@ define(function(require) {
         this.initialize = function(map) {
             
             // Retrieve the HTML from our view directory
-            $.get("views/welcome.html", function(html) {
+            $.get("views/welcome", function(html) {
                 //Fade out the main window first
                 $("#welcome").fadeOut(function() {
                     // Load the HTML into the chat DIV
@@ -53,9 +57,9 @@ define(function(require) {
                         var source = $("#welcome_window #native").find(".selected");
                         var dest   = $("#welcome_window #studying").find(".selected");
                         if(source.length == 0 || dest.length == 0) {
-                            displayError("Please select a language for each category first.");
+                            displayError(ERR_SELECTION);
                         } else if(source.eq(0).attr("data-lang") == dest.eq(0).attr("data-lang")) {
-                            displayError("You cannot learn your native language.");
+                            displayError(ERR_LEARN_OWN_LANG);
                         } else {
                             $("#welcome").hide();
                             var source_lang = source.eq(0).attr("data-lang");
