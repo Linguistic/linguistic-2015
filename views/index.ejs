@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="<%= lang %>" dir="<%= lang_dir %>">
-	<head>
-		<title><%= gettext('Site Title') %></title>
-		<link rel="stylesheet" href="/static/fonts/vegur/stylesheet.css" />
-		<link rel="stylesheet" href="/node_modules/uikit/dist/css/uikit.almost-flat.css" />
-        <link rel="stylesheet" href="/bin/main.min.css">
-        
-        <link rel="icon" type="image/png" href="favicon.png" />
-	</head>
-	<body>
-        
-        <div id="overlay"></div>
-        <div id="map-canvas"></div>
 
-        <div id="container">
-            <div id="layout">
-                <div id="content">
-                    <header>
-                        <img id="logo" src="/static/images/logo.png" />
-                        <div id="user_count"></div>
-                    </header>
+<head>
+    <title>
+        <%=gettext( 'Site Title') %>
+    </title>
+    <link rel="stylesheet" href="/static/fonts/vegur/stylesheet.css" />
+    <link rel="stylesheet" href="/node_modules/uikit/dist/css/uikit.almost-flat.css" />
+    <link rel="stylesheet" href="/bin/main.min.css">
 
-                    <div id="welcome"></div>
-                    <div id="chat"></div>
-                </div>
+    <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+<body>
+
+    <div id="overlay"></div>
+    <div id="map-canvas"></div>
+
+    <div id="container">
+        <div id="layout">
+            <div id="content">
+                <header>
+                    <img id="logo" />
+                    <div id="user_count"></div>
+                </header>
+
+                <div id="welcome"></div>
+                <div id="chat"></div>
             </div>
         </div>
-    
-        <footer>
-            <ul>
-                <li>Contribute on Github</li>
-            </ul>        
-        </footer>
-        
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-		<script src="/node_modules/requirejs/require.js" data-main="bin/main.min"></script>
-	</body>
+    </div>
+
+    <footer>
+        <ul>
+            <li>Contribute on Github</li>
+        </ul>
+    </footer>
+
+
+    <script>
+        function gettext() {}
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="/node_modules/requirejs/require.js" data-main="bin/main.min"></script>
+</body>
+
 </html>

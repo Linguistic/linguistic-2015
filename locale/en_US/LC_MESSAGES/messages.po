@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-26 03:26+0000\n"
+"POT-Creation-Date: 2015-05-28 03:18+0000\n"
 "PO-Revision-Date: 2015-05-23 23:13-0400\n"
 "Last-Translator: Tyler Nickerson <nickersoft@gmail.com>\n"
 "Language-Team: Language en-US\n"
@@ -11,31 +11,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Chat.js:36
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:11
 msgid "Click here to start typing (press 'Esc' to disconnect)"
 msgstr "Click here to start typing (press 'Esc' to disconnect)"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Chat.js:37
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:12
 msgid "Waiting for a chat partner..."
 msgstr "Waiting for a chat partner..."
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Chat.js:38
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:13
 msgid "Start a new chat"
 msgstr "Start a new chat"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Welcome.js:18
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:14
+msgid "You are now talking to a native speaker somewhere in the world"
+msgstr "You are now talking to a native speaker somewhere in the world"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
 msgid "You cannot learn your native language"
 msgstr "You cannot learn your native language"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Welcome.js:19
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
 msgid "Please select a language for each category first"
 msgstr "Please select a language for each category first"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:49
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:51
 msgid "people online"
 msgstr " people online"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:4
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:6
 msgid "Site Title"
 msgstr "Linguist - Speak to the World"
 

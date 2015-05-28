@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-26 03:26+0000\n"
+"POT-Creation-Date: 2015-05-28 03:18+0000\n"
 "PO-Revision-Date: 2015-05-23 23:14-0400\n"
 "Last-Translator: Tyler Nickerson <nickersoft@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -11,31 +11,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Chat.js:36
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:11
 msgid "Click here to start typing (press 'Esc' to disconnect)"
 msgstr "点击这里开始打字 （按下Esc键掐断）"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Chat.js:37
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:12
 msgid "Waiting for a chat partner..."
 msgstr "在等谈谈的拍档..."
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Chat.js:38
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:13
 msgid "Start a new chat"
 msgstr "开始新的会期"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Welcome.js:18
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:14
+msgid "You are now talking to a native speaker somewhere in the world"
+msgstr "你现在跟说你联系的语言的人谈谈"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
 msgid "You cannot learn your native language"
 msgstr "你不能学习你的母语"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Welcome.js:19
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
 msgid "Please select a language for each category first"
 msgstr "请先选两个语言"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:49
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:51
 msgid "people online"
 msgstr "个人上网"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:4
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:6
 msgid "Site Title"
 msgstr "语言学家 － 世界说话"
 

@@ -1,7 +1,7 @@
 ;var json_locale_data = {
    "messages": {
       "": {
-         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-26 03:26+0000\nPO-Revision-Date: 2015-05-23 23:14-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Chinese\nLanguage: zh\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-28 03:18+0000\nPO-Revision-Date: 2015-05-23 23:14-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Chinese\nLanguage: zh\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
       },
       "Click here to start typing (press 'Esc' to disconnect)": [
          null,
@@ -14,6 +14,10 @@
       "Start a new chat": [
          null,
          "开始新的会期"
+      ],
+      "You are now talking to a native speaker somewhere in the world": [
+         null,
+         "你现在跟说你联系的语言的人谈谈"
       ],
       "You cannot learn your native language": [
          null,
