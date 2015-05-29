@@ -1,8 +1,16 @@
 {
    "messages": {
       "": {
-         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-28 03:18+0000\nPO-Revision-Date: 2015-05-23 23:13-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Language en-US\nLanguage: en-US\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-29 03:32+0000\nPO-Revision-Date: 2015-05-23 23:13-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Language en-US\nLanguage: en-US\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
       },
+      "Me": [
+         null,
+         "Me"
+      ],
+      "Stranger": [
+         null,
+         "Stranger"
+      ],
       "Click here to start typing (press 'Esc' to disconnect)": [
          null,
          "Click here to start typing (press 'Esc' to disconnect)"
@@ -19,6 +27,18 @@
          null,
          "You are now talking to a native speaker somewhere in the world"
       ],
+      "You have disconnected": [
+         null,
+         "You have disconnected"
+      ],
+      "Your chat partner has disconnected": [
+         null,
+         "Your chat partner has disconnected"
+      ],
+      "Your partner is typing...": [
+         null,
+         "Your partner is typing..."
+      ],
       "You cannot learn your native language": [
          null,
          "You cannot learn your native language"
@@ -30,6 +50,10 @@
       "people online": [
          null,
          " people online"
+      ],
+      "Translate": [
+         null,
+         "Translate"
       ],
       "Site Title": [
          null,

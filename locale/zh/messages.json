@@ -1,8 +1,16 @@
 {
    "messages": {
       "": {
-         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-28 03:18+0000\nPO-Revision-Date: 2015-05-23 23:14-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Chinese\nLanguage: zh\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-29 03:32+0000\nPO-Revision-Date: 2015-05-23 23:14-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Chinese\nLanguage: zh\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
       },
+      "Me": [
+         null,
+         "我"
+      ],
+      "Stranger": [
+         null,
+         "陌生人"
+      ],
       "Click here to start typing (press 'Esc' to disconnect)": [
          null,
          "点击这里开始打字 （按下Esc键掐断）"
@@ -19,6 +27,18 @@
          null,
          "你现在跟说你联系的语言的人谈谈"
       ],
+      "You have disconnected": [
+         null,
+         "你掐断了"
+      ],
+      "Your chat partner has disconnected": [
+         null,
+         "你谈谈的拍档掐断了"
+      ],
+      "Your partner is typing...": [
+         null,
+         "你的拍档在打字..."
+      ],
       "You cannot learn your native language": [
          null,
          "你不能学习你的母语"
@@ -30,6 +50,10 @@
       "people online": [
          null,
          "个人上网"
+      ],
+      "Translate": [
+         null,
+         "翻译"
       ],
       "Site Title": [
          null,

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-28 03:18+0000\n"
+"POT-Creation-Date: 2015-05-29 03:32+0000\n"
 "PO-Revision-Date: 2015-05-23 23:14-0400\n"
 "Last-Translator: Tyler Nickerson <nickersoft@gmail.com>\n"
 "Language-Team: Chinese\n"
@@ -12,32 +12,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:11
+msgid "Me"
+msgstr "我"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:12
+msgid "Stranger"
+msgstr "陌生人"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
 msgid "Click here to start typing (press 'Esc' to disconnect)"
 msgstr "点击这里开始打字 （按下Esc键掐断）"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:12
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19
 msgid "Waiting for a chat partner..."
 msgstr "在等谈谈的拍档..."
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:13
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
 msgid "Start a new chat"
 msgstr "开始新的会期"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:14
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
 msgid "You are now talking to a native speaker somewhere in the world"
 msgstr "你现在跟说你联系的语言的人谈谈"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:22
+msgid "You have disconnected"
+msgstr "你掐断了"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:23
+msgid "Your chat partner has disconnected"
+msgstr "你谈谈的拍档掐断了"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:24
+msgid "Your partner is typing..."
+msgstr "你的拍档在打字..."
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:30
 msgid "You cannot learn your native language"
 msgstr "你不能学习你的母语"
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:31
 msgid "Please select a language for each category first"
 msgstr "请先选两个语言"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:51
 msgid "people online"
 msgstr "个人上网"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/chat.ejs:3
+msgid "Translate"
+msgstr "翻译"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:6
 msgid "Site Title"

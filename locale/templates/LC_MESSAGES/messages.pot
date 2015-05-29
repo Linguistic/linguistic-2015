@@ -8,34 +8,58 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2015-05-28 03:18+0000\n"
+"POT-Creation-Date: 2015-05-29 03:32+0000\n"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:11
-msgid "Click here to start typing (press 'Esc' to disconnect)"
+msgid "Me"
 msgstr ""
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:12
+msgid "Stranger"
+msgstr ""
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
+msgid "Click here to start typing (press 'Esc' to disconnect)"
+msgstr ""
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19
 msgid "Waiting for a chat partner..."
 msgstr ""
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:13
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
 msgid "Start a new chat"
 msgstr ""
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:14
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
 msgid "You are now talking to a native speaker somewhere in the world"
 msgstr ""
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:22
+msgid "You have disconnected"
+msgstr ""
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:23
+msgid "Your chat partner has disconnected"
+msgstr ""
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:24
+msgid "Your partner is typing..."
+msgstr ""
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:30
 msgid "You cannot learn your native language"
 msgstr ""
 
-#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:31
 msgid "Please select a language for each category first"
 msgstr ""
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:51
 msgid "people online"
+msgstr ""
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/chat.ejs:3
+msgid "Translate"
 msgstr ""
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:6

@@ -5,6 +5,7 @@ define(function (require) {
     // Variable imports
     var $ = require('jquery');
     var Dictionary = require('class/Dictionary');
+    var ContextMenu = require('class/ContextMenu');
 
     /*
      * Name: Chat()
@@ -74,7 +75,8 @@ define(function (require) {
                 $('#send_box').attr('placeholder', Dictionary.Messages().MSG_WAIT).prop('disabled', true);
                 $('#chat_messages ul').fadeOut(DEFAULT_TIMEOUT, function () {
                     $(this).html('');
-                });
+                });    
+                $("#chat_tooltip").hide();
                 break;
 
             case CHATTING:
@@ -83,16 +85,18 @@ define(function (require) {
                 $('#chat_messages ul').fadeIn(DEFAULT_TIMEOUT, function () {
 
                     // Timer to determine when user is typing
-                    var timer;
+                    var timer, contextMenu;
 
                     // Disconnects if the user hits 'esc'
                     $(document.body).keyup(function (e) {
                         if (e.which === 27) {
-                            socket.emit('leave');
-                            self.pushMessage('You have disconnected', 'disconnected');
-                            self.updateState(ENDED);
+                            self.disconnect();
                         }
                     });
+
+                    // Initialize the context menu
+                    contextMenu = new ContextMenu($("#chat_tooltip"));
+                    contextMenu.initialize($("#chat_window #chat_messages"));
 
                     // Send a message when the chat form is submitted
                     $('#send_form').submit(function () {
@@ -145,6 +149,19 @@ define(function (require) {
             $('#send_form').fadeIn();
         };
 
+
+        /*
+         * Name: disconnect()
+         * Purpose: Disconnects from the current chat
+         * Arguments: None
+         * Returns: Void
+         */
+        this.disconnect = function () {
+            socket.emit('leave');
+            self.pushMessage(Dictionary.Messages().MSG_YOU_DISCONNECT, 'disconnected');
+            self.updateState(ENDED);
+        };
+
         /*
          * Name: requestPartner()
          * Purpose: Requests a new chat partner
@@ -189,6 +206,7 @@ define(function (require) {
 
             // Retrieve the HTML from our view directory
             $.get('views/chat', function (html) {
+
                 // Load the HTML into the chat DIV
                 $('#chat').html(html);
 
@@ -230,7 +248,7 @@ define(function (require) {
             // Occurs when the partner begins to type
             socket.on('typing_start', function (data) {
                 if ($('#typing_tag').length === 0) {
-                    self.pushMessage('Your partner is typing...', 'status_text prepend', 'typing_tag');
+                    self.pushMessage(Dictionary.Messages().MSG_PARTNER_TYPING, 'status_text prepend', 'typing_tag');
                 }
             });
 
@@ -251,19 +269,19 @@ define(function (require) {
 
             // Occurs when a user's partner disconnects from the chat
             socket.on('ended', function (data) {
-                self.pushMessage('Your chat partner has disconnected.', 'disconnected');
+                self.pushMessage(Dictionary.Messages().MSG_PARTNER_DISCONNECT, 'disconnected');
                 self.updateState(ENDED);
             });
 
             // Occurs when a message is received
             socket.on('message', function (data) {
 
-                var prepend = 'Stranger',
-                    css_class = 'them';
+                var prepend = Dictionary.Labels().LBL_STRANGER,
+                    css_class = 'stranger';
 
                 // If we are the ones posting the message, make it clear
                 if (data.user === userID) {
-                    prepend = 'Me';
+                    prepend = Dictionary.Labels().LBL_ME;
                     css_class = 'me';
                 }
 

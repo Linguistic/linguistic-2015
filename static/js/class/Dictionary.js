@@ -6,12 +6,22 @@ define(function (require) {
 
     var Dictionary = {
 
+        Labels: function () {
+            return {
+                LBL_ME: gettext('Me'),
+                LBL_STRANGER: gettext('Stranger')
+            };
+        },
+
         Messages: function () {
             return {
                 MSG_CHAT_PLACEHOLDER: gettext('Click here to start typing (press \'Esc\' to disconnect)'),
                 MSG_WAIT: gettext('Waiting for a chat partner...'),
                 MSG_NEW: gettext('Start a new chat'),
-                MSG_RAND_USER: gettext('You are now talking to a native speaker somewhere in the world')
+                MSG_RAND_USER: gettext('You are now talking to a native speaker somewhere in the world'),
+                MSG_YOU_DISCONNECT: gettext('You have disconnected'),
+                MSG_PARTNER_DISCONNECT: gettext('Your chat partner has disconnected'),
+                MSG_PARTNER_TYPING: gettext('Your partner is typing...')
             };
         },
 

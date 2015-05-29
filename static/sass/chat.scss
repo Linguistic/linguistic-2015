@@ -1,76 +1,93 @@
+@import "mixins";
+
+.context_menu {
+    @include box-shadow(0px, 2px, 4px, rgba(0,0,0,0.3));
+    @include border-radius(2px);
+    display: block;
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    ul {
+        list-style: none;
+        margin:0px;
+        padding:0px;
+        li {
+            padding:5px 10px;
+            font-size:0.8em;
+            color:#2b2b2b;
+            &:hover {
+                background:#efefef;
+                cursor:pointer;
+            }
+        }
+    }
+}
+
 .clickable {
-    cursor:pointer; 
+    cursor: pointer;
 }
 
 #send_button {
-	color:lightgray;
-	font-size:1.5em;
-    transition:all 0.25s ease-in-out;
-    -khtml-transition:all 0.25s ease-in-out;
-    -o-transition:all 0.25s ease-in-out;
-    -ms-transition:all 0.25s ease-in-out;
-    -webkit-transition:all 0.25s ease-in-out;
-    
+    color: lightgray;
+    font-size: 1.5em;
+    transition: all 0.25s ease-in-out;
+    -khtml-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -webkit-transition: all 0.25s ease-in-out;
     &.send {
         &:hover {
-	       color:#F9BF3B;
+            color: #F9BF3B;
         }
     }
-    
     &.new {
         &:hover {
-            color:#555;
+            color: #555;
         }
     }
 }
 
 #chat_window {
-	width:100%;
-	display:relative;
-	margin:0 auto;
-    height:435px;
-    padding-top:25px;
+    width: 100%;
+    display: relative;
+    margin: 0 auto;
+    height: 435px;
+    padding-top: 25px;
     border-collapse: collapse;
-    
     #chat_messages {
-        height:88%;
-        width:100%;
-        display:block;
-        position:relative;
-        overflow:auto;
-
+        height: 88%;
+        width: 100%;
+        display: block;
+        position: relative;
+        overflow: auto;
         ul {
-           list-style:none;
-
+            list-style: none;
             li {
-                padding:2px;
-                color:#5b5b5b;
-                padding-left:10px;
-                font-family:'VegurRegular', sans-serif;
-                text-align:left;
-
+                padding: 2px;
+                color: #5b5b5b;
+                padding-left: 10px;
+                font-family: 'VegurRegular', sans-serif;
+                text-align: left;
                 &.me {
                     span {
-                       color:#4183D7;
-                       font-weight:bold;
+                        color: #4183D7;
+                        font-weight: bold;
                     }
                 }
-
-                &.them {
+                &.stranger {
                     span {
-                        color:#E74C3C;
-                        font-weight:bold;
+                        color: #E74C3C;
+                        font-weight: bold;
                     }
                 }
-
                 &.status_text {
-                    color:gray;
-                    font-weight:lighter;
-                    display:none;
+                    color: gray;
+                    font-weight: lighter;
+                    display: none;
                 }
-
                 &.disconnected {
-                   color:#bbb;
+                    color: #bbb;
                 }
             }
         }
@@ -78,18 +95,16 @@
 }
 
 #send_form {
-    display:block;
-    height:12%;
-    width:100%;
-    
+    display: block;
+    height: 12%;
+    width: 100%;
     .inner {
-        padding:15px;
-        
+        padding: 15px;
         #send_box {
-            width:100%;
-            line-height:1.3em;
-            font-family:'VegurLight', sans-serif;
-            font-weight:lighter;
+            width: 100%;
+            line-height: 1.3em;
+            font-family: 'VegurLight', sans-serif;
+            font-weight: lighter;
         }
     }
 }
