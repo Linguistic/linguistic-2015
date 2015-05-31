@@ -55,6 +55,7 @@ input[type=text] {
     overflow: hidden;
     display: block;
     position: relative;
+    z-index:100;
     #layout {
         display: block;
         width: 800px;

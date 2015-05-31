@@ -20,7 +20,7 @@ If you wish to run Linguist behind a proxy server, you must add the following tw
 	
 It is important to note that location reporting will not work on a local installation (at least as far as I know).
 
-## Localiation
+## Localization
 ### Creating a New Language Pack
 
 Considering the fact that Linguist is designed to accomodate language learners from across the globe, it is essential that the Linguist platform be offered in as many languages as possible. If you would like to contribute to our localization efforts, simply run the following two commands from the document root to generate a new .po file to edit:
