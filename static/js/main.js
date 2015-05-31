@@ -35,7 +35,7 @@ require(['jquery', 'class/Welcome', 'socketio', 'gettext'], function ($, Welcome
     $("#logo").attr("src", "/static/images/logos/" + current_lang + ".png").show();
 
     $.ajax({
-        url: 'locale/' + current_lang + '/messages.json',
+        url: 'locale/' + current_lang.replace('-','_') + '/messages.json',
         dataType: 'json',
         method: 'GET',
         success: function (data) {

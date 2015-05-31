@@ -1,7 +1,7 @@
 ;var json_locale_data = {
    "messages": {
       "": {
-         "Project-Id-Version": " PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2015-05-30 02:48+0000\nPO-Revision-Date: 2015-05-23 23:13-0400\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nLanguage-Team: Language en-US\nLanguage: en-US\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+         "Project-Id-Version": " PACKAGE VERSION\nLanguage-Team: English\nReport-Msgid-Bugs-To: \nPO-Revision-Date: 2015-05-31 13:44-0400\nLanguage: en_US\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPOT-Creation-Date: 2015-05-30 02:48+0000\nLast-Translator: Tyler Nickerson <nickersoft@gmail.com>\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
       },
       "Me": [
          null,
