@@ -25,11 +25,11 @@ gulp.task('lint', function () {
 });
 
 gulp.task('sass', function () {
-    return gulp.src('static/sass/*.scss')
+    return gulp.src('static/scss/*.scss')
         .pipe(concat('main.min.css'))
         .pipe(gulp.dest(COMPILE_DIRECTORY))
         .pipe(sass({
-            includePaths: ["static/sass"]
+            includePaths: ["static/scss"]
         }))
         .pipe(minify())
         .pipe(gulp.dest(COMPILE_DIRECTORY));
@@ -42,6 +42,12 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest(COMPILE_DIRECTORY))
 });
 
+gulp.task('watch', function() {
+    gulp.watch('static/js/*.js', ['lint', 'scripts']);
+    gulp.watch('static/scss/*.scss', ['sass']);
+});
+
+
 gulp.task('rebuild_po', shell.task([
     './node_modules/.bin/extract-pot --locale locale .',
     './node_modules/i18n-abide/bin/merge-po.sh locale'
@@ -51,4 +57,4 @@ gulp.task('compile_json', shell.task([
     './node_modules/i18n-abide/bin/compile-json locale locale'
 ]));
 
-gulp.task('default', ['clean', 'lint', 'sass', 'scripts', 'compile_json']);
+gulp.task('default', ['clean', 'lint', 'sass', 'scripts', 'compile_json', 'watch']);

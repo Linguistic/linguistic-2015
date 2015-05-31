@@ -95,8 +95,8 @@ define(function (require) {
                     });
 
                     // Initialize the context menu
-                    contextMenu = new ContextMenu($("#chat_tooltip"));
-                    contextMenu.initialize($("#chat_window #chat_messages"));
+                    // contextMenu = new ContextMenu($("#chat_tooltip"));
+                    // contextMenu.initialize($("#chat_window #chat_messages"));
 
                     // Send a message when the chat form is submitted
                     $('#send_form').submit(function () {
