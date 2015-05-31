@@ -20,16 +20,24 @@ If you wish to run Linguist behind a proxy server, you must add the following tw
 	
 It is important to note that location reporting will not work on a local installation (at least as far as I know).
 
-## Creating a New Language Pack
+## Localiation
+### Creating a New Language Pack
 
 Considering the fact that Linguist is designed to accomodate language learners from across the globe, it is essential that the Linguist platform be offered in as many languages as possible. If you would like to contribute to our localization efforts, simply run the following two commands from the document root to generate a new .po file to edit:
 
-```
-$ mkdir -p ./locale/templates/LC_MESSAGES/
-$ msginit --input=./locale/templates/LC_MESSAGES/messages.pot --output-file=./locale/<LANG>/LC_MESSAGES/messages.po -l <LANG>
-```
+	$ msginit --input=./locale/templates/LC_MESSAGES/messages.pot --output-file=./locale/<LANG>/LC_MESSAGES/messages.po -l <LANG>
 
-where `<LANG>` is the two letter language code of the language you are translating into. Please note that if you wish to translate into a specific dialect (such as zh-TW or en-UK), the hyphen between the language and the dialect **must** be replaced with an underscore (_). Otherwise, i18n will not detect the language correctly.
+where `<LANG>` is the two letter language code of the language you are translating into. Please note that if you wish to translate into a specific dialect (such as zh-TW or en-UK), the hyphen between the language and the dialect __must__ be replaced with an underscore (_). Otherwise, i18n will not detect the language correctly.
+
+### Updating a Language Pack
+
+Occasionally, language packs need to be updated as new strings are added to the Linguist interface. To update the language template and merge new strings into all language packs, run the following in the root directory:
+
+	$ gulp scrape_po
+
+It is recommended that this command be run before making _any_ changes to existing language packs. Once changes to a pack have been made, recompile the JSON representation of these packs by running:
+
+	$ gulp compile_json
 
 ### Resources
 GNU gettext utilities must be installed before creating these language packs. The following resources should help you get set up with installing Gettext on your respective operating system: 

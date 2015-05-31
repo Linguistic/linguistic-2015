@@ -48,7 +48,7 @@ gulp.task('watch', function() {
 });
 
 
-gulp.task('rebuild_po', shell.task([
+gulp.task('scrape_po', shell.task([
     './node_modules/.bin/extract-pot --locale locale .',
     './node_modules/i18n-abide/bin/merge-po.sh locale'
 ]));
