@@ -23,11 +23,11 @@ It is important to note that location reporting will not work on a local install
 ## Localization
 ### Creating a New Language Pack
 
-Considering the fact that Linguist is designed to accomodate language learners from across the globe, it is essential that the Linguist platform be offered in as many languages as possible. If you would like to contribute to our localization efforts, simply run the following two commands from the document root to generate a new .po file to edit:
+Considering the fact that Linguist is designed to accomodate language learners from across the globe, it is essential that the Linguist platform be offered in as many languages as possible. If you would like to contribute to our localization efforts, simply run the following command from the root path to generate a new .po file to edit:
 
-	$ msginit --input=./locale/templates/LC_MESSAGES/messages.pot --output-file=./locale/<LANG>/LC_MESSAGES/messages.po -l <LANG>
+	$ ./crlang.sh <LANG>
 
-where `<LANG>` is the two letter language code of the language you are translating into. Please note that if you wish to translate into a specific dialect (such as zh-TW or en-UK), the hyphen between the language and the dialect __must__ be replaced with an underscore (_). Otherwise, i18n will not detect the language correctly.
+where `<LANG>` is the language code of the language you are translating into. Please note that if you wish to translate into a specific dialect (such as zh-TW or en-UK), the hyphen between the language and the dialect __must__ be replaced with an underscore (_). Otherwise, i18n will not detect the language correctly.
 
 ### Updating a Language Pack
 
