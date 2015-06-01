@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Language-Team: Spanish\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2015-06-01 00:11-0400\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2015-05-30 02:48+0000\n"
+"Last-Translator: Tyler Nickerson <nickersoft@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:11
+msgid "Me"
+msgstr "Me"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:12
+msgid "Stranger"
+msgstr "Compañero"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
+msgid "Click here to start typing (press 'Esc' to disconnect)"
+msgstr "Haz clic aqui para empezar a escribir (pulsa tecla escape para desconectar)"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19
+msgid "Waiting for a chat partner..."
+msgstr "En espera de un compañero de charla..."
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:20
+msgid "Start a new chat"
+msgstr "Empezar un nuevo charla"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:21
+msgid "You are now talking to a native speaker somewhere in the world"
+msgstr "Ahora está hablando con un hablante nativo en alguna parte en el mundo"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:22
+msgid "You have disconnected"
+msgstr "Ha desconectado"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:23
+msgid "Your chat partner has disconnected"
+msgstr "Su compañero de charla se ha desconectado"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:24
+msgid "Your partner is typing..."
+msgstr "Su compañero está escribiendo..."
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:30
+msgid "You cannot learn your native language"
+msgstr "No se puede aprender su lengua materna"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:31
+msgid "Please select a language for each category first"
+msgstr "Por favor, elegir una lengua para todos categoría primero"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/main.js:51
+msgid "people online"
+msgstr " personas en línea actualmente"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/chat.ejs:3
+msgid "Translate"
+msgstr "Traducir"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:6
+msgid "Site Title"
+msgstr "Hablar Al Mundo"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/welcome.ejs:3
+msgid "Which language do you speak natively?"
+msgstr "Cuál es tu lengua materna?"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/welcome.ejs:12
+msgid "Which language are you currently studying?"
+msgstr "¿Qué lengua está actualmente estudiando?"
+
+#: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/welcome.ejs:21
+msgid "Enter"
+msgstr "Entrar"

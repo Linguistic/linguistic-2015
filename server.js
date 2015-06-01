@@ -12,7 +12,7 @@ var Chance = require('chance'),
 // Preconfig
 app.use('/', express.static(__dirname));
 app.use(i18n.abide({
-    supported_languages: ['en-US', 'fr', 'zh'],
+    supported_languages: ['en-US', 'zh', 'fr', 'es'],
     default_lang: 'en-US',
     translation_directory: 'locale',
 }));
