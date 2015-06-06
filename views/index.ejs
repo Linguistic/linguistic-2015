@@ -2,14 +2,26 @@
 <html lang="<%= lang %>" dir="<%= lang_dir %>">
 
 <head>
+
     <title>
         <%= gettext( 'Site Title') %>
     </title>
+
     <link rel="stylesheet" href="/static/fonts/vegur/stylesheet.css" />
     <link rel="stylesheet" href="/node_modules/uikit/dist/css/uikit.almost-flat.css" />
     <link rel="stylesheet" href="/dist/main.min.css">
 
     <link rel="icon" type="image/png" href="favicon.png" />
+
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='keywords' content='language,chatroulette,omegle,chinese,french,spanish,english,learn,practice,speak,write,chat,chatroom,中文,法文,英文,西班牙文,学习'>
+    <meta name='description' content='Chatroulette for language learners. Be instantly connected with a native speaker, 100% free.'>
+    <meta name='subject' content='lifestyle'>
+<!--
+    <meta name='twitter:image' content='http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg'>
+    <meta property='og:image' content=''/>
+-->
 </head>
 
 <body>
@@ -21,22 +33,18 @@
         <div id="layout">
             <div id="content">
                 <header>
-                    <img id="logo" />
-                    <div id="user_count"></div>
+                   <div class='inner'>
+                        <img id="logo" />
+                        <div id="user_count"></div>
+                    </div>
                 </header>
 
                 <div id="welcome"></div>
                 <div id="chat"></div>
             </div>
         </div>
+
     </div>
-
-    <footer>
-        <ul>
-            <li><a target="_blank" href="https://github.com/Nickersoft/Linguist-Beta"><span class="uk-icon-github"></span></a></li>
-        </ul>
-    </footer>
-
 
     <script>
         function gettext() {}

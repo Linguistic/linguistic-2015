@@ -1,4 +1,5 @@
-@import "mixins";
+@import 'mixins';
+@import 'common';
 
 .context_menu {
     @include box-shadow(0px, 2px, 4px, rgba(0,0,0,0.3));
@@ -28,47 +29,35 @@
     cursor: pointer;
 }
 
-#send_button {
-    color: lightgray;
-    font-size: 1.5em;
-    transition: all 0.25s ease-in-out;
-    -khtml-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
-    -ms-transition: all 0.25s ease-in-out;
-    -webkit-transition: all 0.25s ease-in-out;
-    &.send {
-        &:hover {
-            color: #F9BF3B;
-        }
-    }
-    &.new {
-        &:hover {
-            color: #555;
-        }
-    }
-}
-
 #chat_window {
     width: 100%;
-    display: relative;
+    display: block;
     margin: 0 auto;
-    height: 435px;
-    padding-top: 25px;
     border-collapse: collapse;
+    position:absolute;
+    bottom:0;
+    left:0;
+    top:5.5em;
     #chat_messages {
-        height: 88%;
         width: 100%;
         display: block;
-        position: relative;
+        position: absolute;
         overflow: auto;
+        top:0;
+        bottom:3em;
         ul {
             list-style: none;
+            padding-left:1em !important;
             li {
-                padding: 2px;
+                @include mobile {
+                    padding:0px 10px;
+                    font-size:1.2em;
+                }
+                padding: 1px 10px;
                 color: #5b5b5b;
-                padding-left: 10px;
                 font-family: 'VegurRegular', sans-serif;
                 text-align: left;
+                font-size:1em;
                 &.me {
                     span {
                         color: #4183D7;
@@ -85,6 +74,9 @@
                     color: gray;
                     font-weight: lighter;
                     display: none;
+                    &:first-child {
+                        padding:20px 10px 10px 10px;
+                    }
                 }
                 &.disconnected {
                     color: #bbb;
@@ -92,19 +84,51 @@
             }
         }
     }
-}
-
-#send_form {
-    display: block;
-    height: 12%;
-    width: 100%;
-    .inner {
-        padding: 15px;
-        #send_box {
-            width: 100%;
-            line-height: 1.3em;
-            font-family: 'VegurLight', sans-serif;
-            font-weight: lighter;
+    #send_area {
+        display: block;
+        height: 3em;
+        width: 100%;
+        position:absolute;
+        bottom:0px;
+        left:0px;
+        form {
+            @include dimension(100%, 100%);
+            display:table;
+            padding:0px;
+            .message_button {
+                @extend .image-button;
+                @include transition(all, 0.25s);
+                @include dimension(1em, 1em);
+                padding:0;
+                margin:0 0.75em 0 1em;
+                color: lightgray;
+                font-size: 1.5em;
+                height:100%;
+                display:table-cell;
+                vertical-align: middle;
+                &.send:hover {
+                    color: #F9BF3B;
+                }
+                &.new:hover {
+                    color: #555;
+                }
+                &.disconnect:hover {
+                    color: #F64747;
+                }
+            }
+            span {
+                padding:0;
+                display:table-cell;
+                width:100%;
+                vertical-align: middle;
+                #send_box {
+                    width: 100%;
+                    line-height: 1.3em;
+                    font-family: 'VegurLight', sans-serif;
+                    font-weight: lighter;
+                    margin-top:0.17em;
+                }
+            }
         }
     }
 }

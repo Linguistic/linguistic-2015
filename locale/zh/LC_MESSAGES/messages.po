@@ -20,8 +20,8 @@ msgid "Stranger"
 msgstr "网友"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
-msgid "Click here to start typing (press 'Esc' to disconnect)"
-msgstr "点击此处开始输入 （按 ‘Esc’ 断开）"
+msgid "Click here to start typing"
+msgstr "点击此处开始输入"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19
 msgid "Waiting for a chat partner..."

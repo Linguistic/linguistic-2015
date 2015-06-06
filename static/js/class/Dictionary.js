@@ -15,7 +15,7 @@ define(function (require) {
 
         Messages: function () {
             return {
-                MSG_CHAT_PLACEHOLDER: gettext('Click here to start typing (press \'Esc\' to disconnect)'),
+                MSG_CHAT_PLACEHOLDER: gettext('Click here to start typing'),
                 MSG_WAIT: gettext('Waiting for a chat partner...'),
                 MSG_NEW: gettext('Start a new chat'),
                 MSG_RAND_USER: gettext('You are now talking to a native speaker somewhere in the world'),

@@ -21,8 +21,8 @@ msgid "Stranger"
 msgstr "Stranger"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
-msgid "Click here to start typing (press 'Esc' to disconnect)"
-msgstr "Click here to start typing (press 'Esc' to disconnect)"
+msgid "Click here to start typing"
+msgstr "Click here to start typing"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19
 msgid "Waiting for a chat partner..."
@@ -66,7 +66,7 @@ msgstr "Translate"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/index.ejs:6
 msgid "Site Title"
-msgstr "Linguist - Speak to the World"
+msgstr "Linguistic - Speak to the World"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/views/welcome.ejs:3
 msgid "Which language do you speak natively?"

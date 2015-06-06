@@ -19,7 +19,7 @@ msgid "Stranger"
 msgstr ""
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
-msgid "Click here to start typing (press 'Esc' to disconnect)"
+msgid "Click here to start typing"
 msgstr ""
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19

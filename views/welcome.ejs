@@ -1,23 +1,37 @@
-<div id="welcome_window">
-    <div id="selection_box">
-        <h2><%= gettext('Which language do you speak natively?') %></h2>
+<div id="selection_box">
+    <h2><%= gettext('Which language do you speak natively?') %></h2>
+    <select class="mobile-select" id="native-mobile">
+        <option data-lang="en">English</option>
+        <option data-lang="zh">Chinese</option>
+        <option data-lang="es">Spanish</option>
+        <option data-lang="fr">French</option>
+    </select>
+    <ul class="lang_list" id="native">
+        <li data-lang="en"><img src="/static/images/icons/lang/en-us.png"/></li>
+        <li data-lang="zh"><img src="/static/images/icons/lang/zh.png"/></li>
+        <li data-lang="es"><img src="/static/images/icons/lang/es.png"/></li>
+        <li data-lang="fr"><img src="/static/images/icons/lang/fr.png"/></li>
+    </ul>
 
-        <ul class="lang_list" id="native">
-            <li data-lang="en"><img src="/static/images/icons/lang/en-us.png"/></li>
-            <li data-lang="zh"><img src="/static/images/icons/lang/zh.png"/></li>
-            <li data-lang="es"><img src="/static/images/icons/lang/es.png"/></li>
-            <li data-lang="fr"><img src="/static/images/icons/lang/fr.png"/></li>
-        </ul>
-        
-        <h2><%= gettext('Which language are you currently studying?') %></h2>
-    
-        <ul class="lang_list" id="studying">
-            <li data-lang="en"><img src="/static/images/icons/lang/en-us.png"/></li>
-            <li data-lang="zh"><img src="/static/images/icons/lang/zh.png"/></li>
-            <li data-lang="es"><img src="/static/images/icons/lang/es.png"/></li>
-            <li data-lang="fr"><img src="/static/images/icons/lang/fr.png"/></li>
-        </ul>
-    </div> <!-- Selection box -->
-    <button class="uk-button uk-button-large" style="width:8em;" id="start_button"><%= gettext('Enter') %></button>
-    <span id="error_text"></span>
-</div> <!-- Welcome window-->
+    <h2><%= gettext('Which language are you currently studying?') %></h2>
+    <select class="mobile-select" id="studying-mobile">
+        <option data-lang="en">English</option>
+        <option data-lang="zh">Chinese</option>
+        <option data-lang="es">Spanish</option>
+        <option data-lang="fr">French</option>
+    </select>
+    <ul class="lang_list" id="studying">
+        <li data-lang="en"><img src="/static/images/icons/lang/en-us.png"/></li>
+        <li data-lang="zh"><img src="/static/images/icons/lang/zh.png"/></li>
+        <li data-lang="es"><img src="/static/images/icons/lang/es.png"/></li>
+        <li data-lang="fr"><img src="/static/images/icons/lang/fr.png"/></li>
+    </ul>
+</div> <!-- Selection box -->
+<button class="uk-button uk-button-large" style="width:8em;" id="start_button"><%= gettext('Enter') %></button>
+<span id="error_text"></span>
+
+<footer>
+    <ul>
+        <li><a target="_blank" href="https://github.com/Nickersoft/Linguist-Beta"><span class="uk-icon-github"></span></a></li>
+    </ul>
+</footer>

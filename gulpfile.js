@@ -39,14 +39,8 @@ gulp.task('scripts', function () {
     return gulp.src('static/js/*.js')
         .pipe(concat('main.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(COMPILE_DIRECTORY))
+        .pipe(gulp.dest(COMPILE_DIRECTORY));
 });
-
-gulp.task('watch', function() {
-    gulp.watch('static/js/*.js', ['lint', 'scripts']);
-    gulp.watch('static/scss/*.scss', ['sass']);
-});
-
 
 gulp.task('scrape_po', shell.task([
     './node_modules/.bin/extract-pot --locale locale .',
@@ -56,5 +50,11 @@ gulp.task('scrape_po', shell.task([
 gulp.task('compile_json', shell.task([
     './node_modules/i18n-abide/bin/compile-json locale locale'
 ]));
+
+gulp.task('watch', function () {
+    gulp.watch('static/js/*.js', ['lint', 'scripts']);
+    gulp.watch('static/scss/*.scss', ['sass']);
+    gulp.watch('static/**/LC_MESSAGES/*.po', ['compile_json']);
+});
 
 gulp.task('default', ['clean', 'lint', 'sass', 'scripts', 'compile_json', 'watch']);

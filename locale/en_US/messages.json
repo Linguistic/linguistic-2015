@@ -11,9 +11,9 @@
          null,
          "Stranger"
       ],
-      "Click here to start typing (press 'Esc' to disconnect)": [
+      "Click here to start typing": [
          null,
-         "Click here to start typing (press 'Esc' to disconnect)"
+         "Click here to start typing"
       ],
       "Waiting for a chat partner...": [
          null,
@@ -57,7 +57,7 @@
       ],
       "Site Title": [
          null,
-         "Linguist - Speak to the World"
+         "Linguistic - Speak to the World"
       ],
       "Which language do you speak natively?": [
          null,

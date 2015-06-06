@@ -70,12 +70,13 @@ define(function (require) {
         this.updateState = function (state) {
             switch (state) {
             case WAITING:
-                $('#send_button').removeClass().addClass('uk-icon-spin uk-icon-circle-o-notch');
-                $('#send_button').click(function () {});
+                $('#send_button').hide();
+                $('#disconnect_button').hide();
+                $('#wait_preloader').show();
                 $('#send_box').attr('placeholder', Dictionary.Messages().MSG_WAIT).prop('disabled', true);
                 $('#chat_messages ul').fadeOut(DEFAULT_TIMEOUT, function () {
                     $(this).html('');
-                });    
+                });
                 $("#chat_tooltip").hide();
                 break;
 
@@ -126,9 +127,14 @@ define(function (require) {
                         }
                     });
 
+                    $("#wait_preloader").hide();
+                    $("#new_button").hide();
+
+                    // Allow disconnect button to disconnect
+                    $("#disconnect_button").show().click(self.disconnect);
+
                     // Enable the send message button
-                    $('#send_button').removeClass().addClass('uk-icon-send send clickable');
-                    $('#send_button').click(function () {
+                    $('#send_button').show().click(function () {
                         $('#send_form').submit();
                     });
 
@@ -137,8 +143,9 @@ define(function (require) {
 
             case ENDED:
                 $('#send_box').val('').attr('placeholder', Dictionary.Messages().MSG_NEW).prop('disabled', 'true');
-                $('#send_button').removeClass().addClass('uk-icon-plus new clickable');
-                $('#send_button').click(function () {
+                $('#send_button').hide();
+                $("#disconnect_button").hide();
+                $('#new_button').show().click(function () {
                     $('#send_form').fadeOut(DEFAULT_TIMEOUT, function () {
                         self.requestPartner();
                     });

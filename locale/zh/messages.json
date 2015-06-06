@@ -11,9 +11,9 @@
          null,
          "网友"
       ],
-      "Click here to start typing (press 'Esc' to disconnect)": [
+      "Click here to start typing": [
          null,
-         "点击此处开始输入 （按 ‘Esc’ 断开）"
+         "点击此处开始输入"
       ],
       "Waiting for a chat partner...": [
          null,

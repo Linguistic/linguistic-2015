@@ -1,21 +1,20 @@
-<div id="chat_tooltip" class="context_menu">
+<div id='chat_tooltip' class='context_menu'>
     <ul>
         <li><%= gettext('Copy') %></li>
         <li><%= gettext('Translate') %></li>
     </ul>
 </div>
-<div id="chat_window">
-    <div id="chat_messages">
+<div id='chat_window'>
+    <div id='chat_messages'>
         <ul></ul>
     </div>
-    <form id="send_form">
-        <div class="inner uk-grid">
-            <div lass="uk-width-1-10">
-                <i id="send_button"></i>
-            </div>
-            <div class="uk-width-9-10" style="padding-left:20px;">
-                <input type="text" id="send_box" autocomplete="off"></input>
-            </div>
-        </div> <!-- Subgrid in send form -->
-    </form> <!-- Send form -->
-</div> <!-- Chat window-->
+    <div id='send_area'>
+        <form id='send_form'>
+            <button class='message_button uk-icon-circle-o-notch uk-icon-spin' id='wait_preloader'></button>
+            <button class='message_button uk-icon-plus new clickable' id='new_button'></button>
+            <button class='message_button uk-icon-send send clickable' id='send_button'></button>
+            <span><input  id='send_box' type='text' autocomplete='off'></input></span>
+            <button class='message_button uk-icon-times disconnect clickable' id='disconnect_button'></button>
+        </form>
+    </div>
+</div>

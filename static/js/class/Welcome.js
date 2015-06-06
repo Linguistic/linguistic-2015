@@ -1,20 +1,25 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
     // Include the dependencies
     var $ = require('jquery'),
         Chat = require('class/Chat'),
         Map = require('class/Map'),
-        Dictionary = require('class/Dictionary');
+        Dictionary = require('class/Dictionary'),
+        Constants = require('class/Constants'),
+        Welcome;
 
     // Main class
-    var Welcome = function (user, sock) {
+    Welcome = function (user, sock) {
 
         // Maintain the current object
         var self = this,
             socket = sock,
             userid = user;
+
+        this.source = 'en';
+        this.dest = 'en';
 
         /*
          * Name: displayError()
@@ -24,10 +29,56 @@ define(function (require) {
          * Returns: Void
          */
         this.displayError = function (text) {
-            $("#welcome_window #error_text").fadeOut(function () {
+            $('#welcome #error_text').fadeOut(function () {
                 $(this).html(text);
                 $(this).fadeIn();
             });
+        };
+
+        /*
+         * Name: setLanguage()
+         * Purpose: Sets the source language (native language)
+         * Arguments:
+         *      - Object el: The element to extract the language data from
+         *      - Integer type: The type of language to set (source/destination)
+         * Returns: Boolean denotting whether operation completed successfully
+         */
+        this.setLanguage = function (el, type) {
+
+            var lang = $(el).attr('data-lang');
+
+            switch (type) {
+                case Constants.LanguageTypes().SOURCE:
+                    console.log('Set source to ' + lang);
+                    self.source = lang;
+                    break;
+
+                case Constants.LanguageTypes().DESTINATION:
+                    console.log('Set dest to ' + lang);
+                    self.dest = lang;
+                    break;
+            }
+        };
+
+        /*
+         * Name: launchChat()
+         * Purpose: Begins a new chat with the specified languages
+         * Arguments:
+         *      - Map map: The Google Maps object to use
+         *      - String sourceLang: The source (native) language
+         *      - String destLang: The destination (learned) language
+         * Returns: Void
+         */
+        this.launchChat = function (map, sourceLang, destLang) {
+            var chat = new Chat(sourceLang, destLang, userid, socket);
+            if (sourceLang === null || destLang === null) {
+                self.displayError(Dictionary.Errors().ERR_SELECTION);
+            } else if (sourceLang === destLang) {
+                self.displayError(Dictionary.Errors().ERR_LEARN_OWN_LANG);
+            } else {
+                chat.initialize(this.map);
+                $('#welcome').hide();
+            }
         };
 
         /*
@@ -39,39 +90,36 @@ define(function (require) {
         this.initialize = function (map) {
 
             // Retrieve the HTML from our view directory
-            $.get("views/welcome", function (html) {
+            $.get('views/welcome', function (html) {
+
+                // The Google map
+                var map = new Map();
+                map.initialize();
+
                 //Fade out the main window first
-                $("#welcome").fadeOut(function () {
+                $('#welcome').fadeOut(function () {
+
                     // Load the HTML into the chat DIV
-                    $("#welcome").html(html);
-                    $("#welcome_window #error_text").hide();
+                    $('#welcome').html(html);
+                    $('#welcome #error_text').hide();
 
-                    $(".lang_list li").click(function () {
-                        $(this.parentNode).eq(0).find("li").removeClass("selected");
-                        $(this).addClass("selected");
+                    // Enable language selection
+                    $('#welcome .lang_list li').click(function () {
+                        $(this.parentNode).eq(0).find('li').removeClass('selected');
+                        $(this).addClass('selected');
                     });
 
-                    $("#start_button").click(function () {
-                        var source = $("#welcome_window #native").find(".selected"),
-                            dest = $("#welcome_window #studying").find(".selected"),
-                            source_lang = source.eq(0).attr("data-lang"),
-                            dest_lang = dest.eq(0).attr("data-lang"),
-                            chat = new Chat(source_lang, dest_lang, userid, socket);
+                    // Allow selectboxes and buttons to wire the language settings
+                    $('#welcome').find('#native-mobile').change(function () { self.setLanguage($(this).find(':selected')[0], Constants.LanguageTypes().SOURCE); });
+                    $('#welcome').find('#studying-mobile').change(function () { self.setLanguage($(this).find(':selected')[0], Constants.LanguageTypes().DESTINATION); });
 
-                        if (source.length === 0 || dest.length === 0) {
-                            self.displayError(Dictionary.Errors().ERR_SELECTION);
-                        } else if (source.eq(0).attr("data-lang") === dest.eq(0).attr("data-lang")) {
-                            self.displayError(Dictionary.Errors().ERR_LEARN_OWN_LANG);
-                        } else {
-                            $("#welcome").hide();
-                            chat.initialize(map);
-                        }
-                    });
+                    $('#welcome').find('#native li').click(function () { self.setLanguage(this, Constants.LanguageTypes().SOURCE); });
+                    $('#welcome').find('#studying li').click(function () { self.setLanguage(this, Constants.LanguageTypes().DESTINATION); });
 
-                    var map = new Map();
-                    map.initialize();
+                    // The 'Enter' button
+                    $('#start_button').click(function () { self.launchChat(map, self.source, self.dest); });
 
-                    $("#welcome").fadeIn();
+                    $('#welcome').fadeIn();
                 });
             });
         };

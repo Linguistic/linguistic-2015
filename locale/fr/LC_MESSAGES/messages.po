@@ -21,8 +21,8 @@ msgid "Stranger"
 msgstr "Partenaire"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:18
-msgid "Click here to start typing (press 'Esc' to disconnect)"
-msgstr "Cliquez ici pour commencer a taper (appuyez sur “esc” pour déconnecter)"
+msgid "Click here to start typing"
+msgstr "Cliquez ici pour commencer a taper"
 
 #: /Users/tjnickerson/Documents/Github/Nickersoft/Linguist-Beta/static/js/class/Dictionary.js:19
 msgid "Waiting for a chat partner..."

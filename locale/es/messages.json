@@ -11,9 +11,9 @@
          null,
          "Compañero"
       ],
-      "Click here to start typing (press 'Esc' to disconnect)": [
+      "Click here to start typing": [
          null,
-         "Haz clic aqui para empezar a escribir (pulsa tecla escape para desconectar)"
+         "Haz clic aqui para empezar a escribir"
       ],
       "Waiting for a chat partner...": [
          null,
