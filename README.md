@@ -1,6 +1,6 @@
 # Welcome to Linguistic
 
-The concept of chatroulette has gotten a bad rep over the past few years. Sites like Omegle have made chatroulette almost an adult-only product, creating a world occupied by lonely men on the Internet hungry for affection. That's all about to change. Introducing Linguistic, the first ever chatroulette website designed specifically for language learners and those who wish to have a better understanding of the world. Simply head over to [http://Linguisticic.io](http://Linguisticic.io), specify which language you know and which one you are learning, and then be connected in seconds to a native speaker to practice with. And that best part of all is, it's free! It's also open-sourced (duh).
+The concept of chatroulette has gotten a bad rep over the past few years. Sites like Omegle have made chatroulette almost an adult-only product, creating a world occupied by lonely men on the Internet hungry for affection. That's all about to change. Introducing Linguistic, the first ever chatroulette website designed specifically for language learners and those who wish to have a better understanding of the world. Simply head over to [http://Linguistic.io](http://Linguistic.io), specify which language you know and which one you are learning, and then be connected in seconds to a native speaker to practice with. And that best part of all is, it's free! It's also open-sourced (duh).
 
 ## Starting Linguistic
 
