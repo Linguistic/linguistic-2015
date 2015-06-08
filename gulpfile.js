@@ -9,7 +9,7 @@ var minify = require('gulp-minify-css');
 var shell = require('gulp-shell');
 var glob = require('glob');
 
-var COMPILE_DIRECTORY = 'dist';
+var COMPILE_DIRECTORY = 'public';
 
 gulp.task('clean', function () {
     del([
@@ -27,20 +27,17 @@ gulp.task('lint', function () {
 gulp.task('sass', function () {
     return gulp.src('static/scss/*.scss')
         .pipe(concat('main.min.css'))
-        .pipe(gulp.dest(COMPILE_DIRECTORY))
+        .pipe(gulp.dest(COMPILE_DIRECTORY + '/css'))
         .pipe(sass({
             includePaths: ["static/scss"]
         }))
-        .pipe(minify())
-        .pipe(gulp.dest(COMPILE_DIRECTORY));
+        .pipe(minify({ processImport: false }))
+        .pipe(gulp.dest(COMPILE_DIRECTORY + '/css'));
 });
 
-gulp.task('scripts', function () {
-    return gulp.src('static/js/*.js')
-        .pipe(concat('main.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest(COMPILE_DIRECTORY));
-});
+gulp.task('rjs', shell.task([
+    'node_modules/.bin/r.js -o build.js optimize=none'
+]));
 
 gulp.task('scrape_po', shell.task([
     './node_modules/.bin/extract-pot --locale locale .',
@@ -52,9 +49,10 @@ gulp.task('compile_json', shell.task([
 ]));
 
 gulp.task('watch', function () {
-    gulp.watch('static/js/*.js', ['lint', 'scripts']);
+    gulp.watch('static/js/**/*.js', ['scripts']);
     gulp.watch('static/scss/*.scss', ['sass']);
     gulp.watch('static/**/LC_MESSAGES/*.po', ['compile_json']);
 });
 
-gulp.task('default', ['clean', 'lint', 'sass', 'scripts', 'compile_json', 'watch']);
+gulp.task('scripts', ['lint', 'rjs']);
+gulp.task('default', ['clean', 'sass', 'compile_json', 'scripts', 'watch']);

@@ -10,27 +10,25 @@ var Chance = require('chance'),
     chance = new Chance();
 
 // Preconfig
-app.use('/', express.static(__dirname));
+app.use('/', express.static(__dirname + '/public'));
+app.use('/static', express.static(__dirname + '/static'));
+
 app.use(i18n.abide({
     supported_languages: ['en-US', 'zh', 'fr', 'es'],
     default_lang: 'en-US',
     translation_directory: 'locale'
 }));
 
-app.engine('ejs', require('ejs').renderFile);
-app.set('view engine', 'ejs');
+//app.engine('ejs', require('ejs').renderFile);
+//app.set('view engine', 'ejs');
 
 // Set up basic URL routing
 app.get('/', function (req, res) {
-    res.render('index');
+    res.sendFile('/index.html');
 });
 
-app.get('/views/welcome', function (req, res) {
-    res.render('welcome');
-});
-
-app.get('/views/chat', function (req, res) {
-    res.render('chat');
+app.get('/require.js', function(req, res) {
+    res.sendFile(__dirname + '/node_modules/requirejs/require.js');
 });
 
 // The number of users online
@@ -81,14 +79,18 @@ var tryMatch = function (user) {
  * Returns: An array of the location, city, and region data from the original object
  */
 var extractLocation = function (data) {
+    console.log(data);
     var data_json = JSON.parse(data);
     var data_loc = data_json.loc.split(',');
     var data_city = data_json.city;
     var data_region = data_json.region;
     return {
-        "loc": data_loc,
-        "city": data_city,
-        "region": data_region
+        points: {
+            x: data_loc[0],
+            y: data_loc[1]
+        },
+        city: data_city,
+        region: data_region
     };
 }
 
@@ -101,9 +103,9 @@ var extractLocation = function (data) {
  */
 var leaveRoom = function (socket) {
 
-    if ((socket.room !== undefined) &&
-        (socket.partner !== undefined) &&
-        (socket.partner.room == socket.room)) {
+    if (socket.room &&
+        socket.partner &&
+        socket.partner.room) {
 
         var room = socket.room;
 
@@ -112,8 +114,8 @@ var leaveRoom = function (socket) {
         io.in(room).emit('ended');
         socket.partner.leave(room);
 
-        socket.room == undefined;
-        socket.partner.room = undefined;
+        socket.room == null;
+        socket.partner.room = null;
 
         return true;
 
@@ -138,11 +140,11 @@ io.on('connection', function (socket) {
         res_socket.setEncoding('utf8');
         res_socket.on('data', function (data) {
             var new_user = chance.guid();
-            socket.location = JSON.parse(data);;
+            socket.location = extractLocation(data);
             socket.username = new_user;
             user_count++; // Increment the user count
             socket.emit('assign', {
-                "user": new_user
+                id: new_user
             });
             io.emit('update_count', user_count);
             console.log("User " + socket.username + " has logged on");
@@ -209,6 +211,7 @@ io.on('connection', function (socket) {
     // When a user requests to leave a chat
     socket.on('leave', function (data) {
         leaveRoom(socket);
+        console.log(socket.username + " has left the current room");
     });
 
     // When the user disconnects completely

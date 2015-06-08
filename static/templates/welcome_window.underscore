@@ -1,0 +1,16 @@
+<div id="selection_box">
+    <h2><%- gettext('Which language do you speak natively?') %></h2>
+    <div id="native_list"></div>
+
+    <h2><%- gettext('Which language are you currently studying?') %></h2>
+    <div id="studying_list"></div>
+</div>
+
+<button class="uk-button uk-button-large" style="width:8em;" id="start_button"><%= gettext('Enter') %></button>
+<span id="error_text"></span>
+
+<footer>
+    <ul>
+        <li><a target="_blank" href="https://github.com/Nickersoft/Linguist-Beta"><span class="uk-icon-github"></span></a></li>
+    </ul>
+</footer>

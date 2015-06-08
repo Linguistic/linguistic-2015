@@ -1,0 +1,5 @@
+<button class='message_button uk-icon-circle-o-notch uk-icon-spin' id='wait_preloader'></button>
+<button class='message_button uk-icon-plus new clickable' id='new_button'></button>
+<button class='message_button uk-icon-send send clickable' id='send_button'></button>
+<span><input  id='send_box' type='text' autocomplete='off'></input></span>
+<button class='message_button uk-icon-times disconnect clickable' id='disconnect_button'></button>

@@ -1,0 +1,14 @@
+<div class="language_list">
+	<select class="mobile-select">
+		<option data-lang="en">English</option>
+		<option data-lang="zh">Chinese</option>
+		<option data-lang="es">Spanish</option>
+		<option data-lang="fr">French</option>
+	</select>
+	<ul class="lang_list">
+		<li data-lang="en"><img src="/static/images/icons/lang/en-us.png"/></li>
+		<li data-lang="zh"><img src="/static/images/icons/lang/zh.png"/></li>
+		<li data-lang="es"><img src="/static/images/icons/lang/es.png"/></li>
+		<li data-lang="fr"><img src="/static/images/icons/lang/fr.png"/></li>
+	</ul>
+</div>

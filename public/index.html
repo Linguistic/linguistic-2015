@@ -7,9 +7,7 @@
         <%= gettext( 'Site Title') %>
     </title>
 
-    <link rel="stylesheet" href="/static/fonts/vegur/stylesheet.css" />
-    <link rel="stylesheet" href="/node_modules/uikit/dist/css/uikit.almost-flat.css" />
-    <link rel="stylesheet" href="/dist/main.min.css">
+    <link rel="stylesheet" href="css/main.min.css">
 
     <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -31,7 +29,7 @@
 
     <div id="container">
         <div id="layout">
-            <div id="content">
+            <div id="window">
                 <header>
                    <div class='inner'>
                         <img id="logo" />
@@ -39,8 +37,7 @@
                     </div>
                 </header>
 
-                <div id="welcome"></div>
-                <div id="chat"></div>
+                <div id="content"></div>
             </div>
         </div>
 
@@ -50,8 +47,9 @@
         function gettext() {}
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script src="/node_modules/requirejs/require.js" data-main="dist/main.min"></script>
+    <script src="require.js"></script>
+    <script src="js/main.min.js"></script>
+
 </body>
 
 </html>
