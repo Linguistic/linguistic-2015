@@ -1,4 +1,4 @@
-# Welcome to Linguistic
+# Welcome to Linguistic #
 
 The concept of chatroulette has gotten a bad rep over the past few years.
 Sites like Omegle have made chatroulette almost an adult-only product, creating a world occupied by
@@ -11,7 +11,7 @@ native speaker to practice with. Completely anonymous. And that best part of all
 To track the progress of upcoming Linguistic features, visit the Linguistic Chat
 [Trello board](https://trello.com/b/4ZPv8eHk/linguistic-chat-scrum-board).
 
-## Starting Linguistic
+## Starting Linguistic ##
 
 To start Linguistic, first `cd` into Linguistic's home directory and run the following two commands:
 
@@ -27,7 +27,7 @@ Once the gulp build has finished, the UIKit framework dependency must be compile
 
 Finally, fire up any web browser and go to http://localhost:4000 to run Linguistic.
 
-## Configuring Nginx
+## Configuring Nginx ##
 
 If you wish to run Linguistic behind a proxy server, you must add the following two settings to your Nginx configuration in order to deduct user location:
 
@@ -36,8 +36,8 @@ If you wish to run Linguistic behind a proxy server, you must add the following 
 
 It is important to note that location reporting will not work on a local installation (at least as far as I know).
 
-## Localization
-### Creating a New Language Pack
+## Localization ##
+### Creating a New Language Pack ###
 
 Considering the fact that Linguistic is designed to accomodate language learners from across the globe, it is essential that the Linguistic platform be offered in as many languages as possible. If you would like to contribute to our localization efforts, simply run the following command from the root path to generate a new .po file to edit:
 
@@ -45,7 +45,7 @@ Considering the fact that Linguistic is designed to accomodate language learners
 
 where `<LANG>` is the language code of the language you are translating into. Please note that if you wish to translate into a specific dialect (such as zh-TW or en-UK), the hyphen between the language and the dialect __must__ be replaced with an underscore (_). Otherwise, i18n will not detect the language correctly.
 
-### Updating a Language Pack
+### Updating a Language Pack ###
 
 Occasionally, language packs need to be updated as new strings are added to the Linguistic interface. To update the language template and merge new strings into all language packs, run the following in the root directory:
 
@@ -55,7 +55,7 @@ It is recommended that this command be run before making _any_ changes to existi
 
     $ gulp compile_json
 
-### Resources
+### Resources ###
 GNU gettext utilities must be installed before creating these language packs. The following resources should help you get set up with installing Gettext on your respective operating system:
 
 **Select Your Operating System**
