@@ -79,7 +79,6 @@ var tryMatch = function (user) {
  * Returns: An array of the location, city, and region data from the original object
  */
 var extractLocation = function (data) {
-    console.log(data);
     var data_json = JSON.parse(data);
     var data_loc = data_json.loc.split(',');
     var data_city = data_json.city;
