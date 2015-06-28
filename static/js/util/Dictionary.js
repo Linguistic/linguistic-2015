@@ -9,7 +9,8 @@ define(function (require) {
         Labels: function () {
             return {
                 LBL_ME: gettext('Me'),
-                LBL_STRANGER: gettext('Stranger')
+                LBL_STRANGER: gettext('Stranger'),
+                LBL_PEOPLE_ONLINE: gettext('people online')
             };
         },
 

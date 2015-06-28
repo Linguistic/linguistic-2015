@@ -10,7 +10,9 @@ var Chance = require('chance'),
     chance = new Chance();
 
 // Preconfig
-app.use('/', express.static(__dirname + '/public'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/locale', express.static(__dirname + '/locale'));
 app.use('/static', express.static(__dirname + '/static'));
 
 app.use(i18n.abide({
@@ -19,12 +21,12 @@ app.use(i18n.abide({
     translation_directory: 'locale'
 }));
 
-//app.engine('ejs', require('ejs').renderFile);
-//app.set('view engine', 'ejs');
+app.set('views', __dirname + '/public');
+app.set('view engine', 'jade');
 
 // Set up basic URL routing
 app.get('/', function (req, res) {
-    res.sendFile('/index.html');
+    res.render('index');
 });
 
 app.get('/require.js', function(req, res) {

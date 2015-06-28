@@ -1,8 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function ($, _, Backbone) {
+    'backbone',
+    'util/Dictionary'
+], function ($, _, Backbone, Dictionary) {
 
     'use strict';
 
@@ -20,7 +21,7 @@ define([
 
         updateUserCount: function () {
             var user_count = this.model.get('user_count');
-            this.$el.parent().find('#user_count').html(user_count + ' Users Online');
+            this.$el.parent().find('#user_count').html(user_count + Dictionary.Labels().LBL_PEOPLE_ONLINE);
         },
 
         render: function () {

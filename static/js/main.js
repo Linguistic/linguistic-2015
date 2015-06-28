@@ -14,16 +14,29 @@ require(['jquery',
          'stacktrace',
          'gettext'], function ($, io, SocketClient, EventBus, printStackTrace) {
 
-    var current_lang = 'en-US';
+    var current_lang = $("html").attr("lang");
+
     $("#logo").attr("src", "/static/images/logos/" + current_lang + ".png").show();
 
-    var eventBus = new EventBus(),
-        socketClient = new SocketClient(eventBus.socketEvents());
+     $.ajax({
+        url: 'locale/' + current_lang.replace('-','_') + '/messages.json',
+        dataType: 'json',
+        method: 'GET',
+        success: function (data) {
 
-    eventBus.attachClient(socketClient);
-    eventBus.init();
+            json_locale_data = {
+                client: data["messages"]
+            };
 
-    socketClient.connect();
+            var eventBus = new EventBus(),
+            socketClient = new SocketClient(eventBus.socketEvents());
+
+            eventBus.attachClient(socketClient);
+            eventBus.init();
+
+            socketClient.connect();
+        }
+     });
 
 //    window.onbeforeunload = function (e) {
 //
