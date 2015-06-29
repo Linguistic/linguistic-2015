@@ -123,6 +123,7 @@ define([
                     typing: false,
                     typing_method: 'hard'
                 });
+                models.chat.unset('partner');
                 models.partner = null;
                 models.chat.set({
                     ui_state: Constants.Chat().UIStates().ENDED
