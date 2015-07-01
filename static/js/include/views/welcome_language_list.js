@@ -14,8 +14,8 @@ define([
         template: _.template(LanguageListTmpl),
 
         events: {
-            'click li': 'setLanguage',
-            'change .mobile-select': 'setLanguage'
+            'click li': 'desktopSelect',
+            'change .mobile-select': 'mobileSelect'
         },
 
         initialize: function (options) {
@@ -24,33 +24,44 @@ define([
             this.user = options.model.get('user');
         },
 
+        selectCorrectLanguage: function ($elements, callback) {
+
+            var $element = null,
+                source = this.user.get('source'),
+                dest = this.user.get('dest'),
+                lang = (this.type === Constants.LanguageTypes().DESTINATION) ? dest : source;
+
+            $elements.each(function () {
+
+                var $element = $(this);
+
+                if ($element.attr('data-lang') === lang) {
+                    callback.call(this);
+                }
+
+            });
+        },
+
         render: function () {
 
             this.$el.html(this.template);
 
             var self = this,
-                list_elements = this.$el.find('li');
+                list_elements = this.$el.find('li'),
+                option_elements = this.$el.find('option');
 
-            list_elements.each(function () {
+            this.selectCorrectLanguage(list_elements, function () {
+                $(this).addClass('selected');
+            });
 
-                var element = $(this),
-                    source = self.user.get('source'),
-                    dest = self.user.get('dest'),
-                    lang = (self.type === Constants.LanguageTypes().DESTINATION) ? dest : source;
-
-                if (element.attr('data-lang') === lang) {
-                    element.addClass('selected');
-                }
-
+            this.selectCorrectLanguage(option_elements, function () {
+                $(this).prop('selected', true);
             });
 
             return this;
         },
 
-        setLanguage: function (e) {
-
-            var $item = $(e.currentTarget),
-                language_code = $item.attr('data-lang');
+        setLanguage: function (language_code) {
 
             switch (this.type) {
 
@@ -62,6 +73,18 @@ define([
                 this.eventBus.trigger('set_user_dest', language_code);
                 break;
             }
+        },
+
+        desktopSelect: function (e) {
+            this.setLanguage(
+                $(e.currentTarget).attr('data-lang')
+            );
+        },
+
+        mobileSelect: function (e) {
+            this.setLanguage(
+                $(e.currentTarget).find(':selected').eq(0).attr('data-lang')
+            );
         }
 
     });
