@@ -10,8 +10,7 @@ var Chance = require('chance'),
     chance = new Chance();
 
 // Preconfig
-app.use('/css', express.static(__dirname + '/public/css'));
-app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/', express.static(__dirname + '/public'));
 app.use('/locale', express.static(__dirname + '/locale'));
 app.use('/static', express.static(__dirname + '/static'));
 
