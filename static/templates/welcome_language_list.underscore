@@ -1,5 +1,6 @@
 <div class="language_list">
 	<select class="mobile-select">
+		<option>Select a language</option>
 		<option data-lang="en">English</option>
 		<option data-lang="zh">Chinese</option>
 		<option data-lang="es">Spanish</option>

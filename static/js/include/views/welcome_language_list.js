@@ -24,22 +24,26 @@ define([
             this.user = options.model.get('user');
         },
 
-        selectCorrectLanguage: function ($elements, callback) {
+        selectCorrectLanguage: function ($elements, callback, failed_callback) {
 
             var $element = null,
                 source = this.user.get('source'),
                 dest = this.user.get('dest'),
-                lang = (this.type === Constants.LanguageTypes().DESTINATION) ? dest : source;
+                lang = (this.type === Constants.LanguageTypes().DESTINATION) ? dest : source,
+                failed = true;
 
             $elements.each(function () {
 
                 var $element = $(this);
 
                 if ($element.attr('data-lang') === lang) {
+                    failed = false;
                     callback.call(this);
                 }
 
             });
+
+            if (failed) failed_callback();
         },
 
         render: function () {
@@ -52,10 +56,16 @@ define([
 
             this.selectCorrectLanguage(list_elements, function () {
                 $(this).addClass('selected');
+            }, function () {
+                list_elements.each(function () {
+                    $(this).removeClass('selected');
+                });
             });
 
             this.selectCorrectLanguage(option_elements, function () {
                 $(this).prop('selected', true);
+            }, function () {
+                option_elements.eq(0).prop('selected', true);
             });
 
             return this;
@@ -76,15 +86,13 @@ define([
         },
 
         desktopSelect: function (e) {
-            this.setLanguage(
-                $(e.currentTarget).attr('data-lang')
-            );
+            var data_lang = $(e.currentTarget).attr('data-lang');
+            this.setLanguage(data_lang);
         },
 
         mobileSelect: function (e) {
-            this.setLanguage(
-                $(e.currentTarget).find(':selected').eq(0).attr('data-lang')
-            );
+            var data_lang = $(e.currentTarget).find(':selected').eq(0).attr('data-lang');
+            this.setLanguage(data_lang);
         }
 
     });
