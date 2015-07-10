@@ -1,0 +1,68 @@
+#container {
+
+    @include size(100%);
+
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index:100;
+
+    #layout {
+
+        @include size(800px 550px);
+        @include margin(0 auto);
+        @include mobile { @include size(100%); }
+        @include position(absolute, 32% null null 50%);
+
+        display: block;
+        z-index: 20;
+
+        #window {
+
+            @include size(100%);
+            @include mobile { border-radius: 0px; }
+            @include padding(0);
+            @include position(relative, -32% null null -50%);
+
+            background: #fbfbfb;
+            border-radius: 6px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            display: block;
+            overflow: hidden;
+            z-index:50;
+
+            header {
+
+                @include padding(0);
+                @include size(auto 5.5em);
+
+                background: white;
+                border-bottom: 1px solid #eee;
+                overflow: hidden;
+                z-index:10;
+
+                .inner {
+                    @include padding(1.5em);
+                }
+
+                #logo {
+                    @include size(12em auto);
+                    display: inline-block;
+                }
+
+                #user_count {
+
+                    color: lightgray;
+                    display: inline-block;
+                    float: right;
+                    line-height: 2.6em;
+
+                    font: {
+                         family:$font-family-light, sans-serif;
+                         size:1.2em;
+                    };
+                }
+            }
+        }
+    }
+}

@@ -1,20 +1,20 @@
-var gulp = require('gulp');
-var del = require('del');
-
-var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var minify = require('gulp-minify-css');
-var shell = require('gulp-shell');
-var glob = require('glob');
+var del = require('del'),
+    concat = require('gulp-concat'),
+    glob = require('glob'),
+    gulp = require('gulp'),
+    jshint = require('gulp-jshint'),
+    minify = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
+    shell = require('gulp-shell'),
+    uglify = require('gulp-uglify');
 
 var COMPILE_DIRECTORY = 'public';
 
 gulp.task('clean', function () {
     del([
-        COMPILE_DIRECTORY + '/*.css',
-        COMPILE_DIRECTORY + '/*.js'
+        COMPILE_DIRECTORY + '/css/*.css',
+        COMPILE_DIRECTORY + '/js/*.js'
     ]);
 });
 
@@ -26,12 +26,11 @@ gulp.task('lint', function () {
 
 gulp.task('sass', function () {
     return gulp.src('static/scss/*.scss')
-        .pipe(concat('main.min.css'))
-        .pipe(gulp.dest(COMPILE_DIRECTORY + '/css'))
         .pipe(sass({
             includePaths: ["static/scss"]
         }))
         .pipe(minify({ processImport: false }))
+        .pipe(rename('main.min.css'))
         .pipe(gulp.dest(COMPILE_DIRECTORY + '/css'));
 });
 

@@ -1,0 +1,65 @@
+html {
+
+    @include size(100%);
+
+    padding: 0;
+    margin: 0;
+}
+
+body {
+
+    @include size(100%);
+    @include mobile { font-size:12px !important; }
+
+    background: #eee;
+    margin: 0;
+    padding: 0;
+
+    font: {
+        family:$font-family-base, sans-serif;
+        size: 16px;
+    }
+}
+
+h1 {
+    font-family:$font-family-light, sans-serif !important;
+    color: lightgray !important;
+    text-align: center;
+}
+
+h2 {
+    color: #555 !important;
+    text-align: center;
+
+    font: {
+        family:$font-family-bold, sans-serif !important;
+        size:1.5em;
+    };
+}
+
+input[type=text] {
+    border: none;
+    background: none;
+    font-size: 1.2em;
+    outline: none;
+}
+
+#overlay {
+
+    @include position(absolute, 0 null null 0);
+    @include size(100%);
+
+    background: none;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+
+}
+
+#map-canvas {
+
+    @include size(100%);
+    @include position(absolute, 0 null null 0);
+
+    background: white;
+    display: block;
+}
