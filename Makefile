@@ -23,7 +23,7 @@ js:
 css:
 	gulp styles
 
-static: js css
+static: clean js css
 
 serve:
 	node server.js
