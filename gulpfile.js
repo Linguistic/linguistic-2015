@@ -33,4 +33,9 @@ gulp.task('styles', function () {
         .pipe(gulp.dest(COMPILE_DIRECTORY + '/css'));
 });
 
+gulp.task('watch', function () {
+    gulp.watch('static/scss/*.scss', ['sass']);
+    gulp.watch('static/scss/**/*.scss', ['sass']);
+});
+
 gulp.task('default', ['sass', 'lint']);
