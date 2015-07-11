@@ -6,7 +6,6 @@ var del = require('del'),
     minify = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
-    shell = require('gulp-shell'),
     uglify = require('gulp-uglify');
 
 var COMPILE_DIRECTORY = 'public';
@@ -24,7 +23,7 @@ gulp.task('lint', function () {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('sass', function () {
+gulp.task('styles', function () {
     return gulp.src('static/scss/*.scss')
         .pipe(sass({
             includePaths: ["static/scss"]
@@ -34,24 +33,4 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(COMPILE_DIRECTORY + '/css'));
 });
 
-gulp.task('rjs', shell.task([
-    'node_modules/.bin/r.js -o build.js optimize=none'
-]));
-
-gulp.task('scrape_po', shell.task([
-    './node_modules/.bin/extract-pot --locale locale .',
-    './node_modules/i18n-abide/bin/merge-po.sh locale'
-]));
-
-gulp.task('compile_json', shell.task([
-    './node_modules/i18n-abide/bin/compile-json locale locale'
-]));
-
-gulp.task('watch', function () {
-    gulp.watch('static/js/**/*.js', ['scripts']);
-    gulp.watch('static/scss/*.scss', ['sass']);
-    gulp.watch('static/**/LC_MESSAGES/*.po', ['compile_json']);
-});
-
-gulp.task('scripts', ['lint', 'rjs']);
-gulp.task('default', ['clean', 'sass', 'compile_json', 'scripts', 'watch']);
+gulp.task('default', ['sass', 'lint']);

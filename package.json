@@ -36,13 +36,11 @@
   "devDependencies": {
     "glob": "^5.0.9",
     "gulp": "^3.8.11",
-    "gulp-compass": "^2.1.0",
     "gulp-concat": "^2.5.2",
     "gulp-jshint": "^1.10.0",
     "gulp-minify-css": "^1.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.1",
-    "gulp-shell": "^0.4.1",
     "gulp-uglify": "^1.2.0",
     "stack-trace": "0.0.9",
     "stacktrace-js": "^0.6.4"
