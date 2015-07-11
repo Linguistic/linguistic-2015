@@ -18,6 +18,7 @@ quality:
 	gulp lint
 
 js:
+	cp -f node_modules/requirejs/require.js public/js
 	node_modules/.bin/r.js -o build.js optimize=none
 
 css:
@@ -26,4 +27,4 @@ css:
 static: clean js css
 
 serve:
-	node server.js
+	node app/server.js
