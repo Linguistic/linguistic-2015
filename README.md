@@ -15,9 +15,6 @@ To track the progress of upcoming Linguistic features, visit the Linguistic Chat
 
 When running Linguistic for the first time, the easiest way to get up and running is by simply running `make` on the home directory. Once you're all set up, these additional `make` commands may come in handy during development:
 
-Makefile Commands
------------------
-
 | Command             | Description                                               |
 |---------------------|-----------------------------------------------------------|
 | `make compile_json` | Converts all .po arrays to i18n JSON                      |
@@ -27,8 +24,6 @@ Makefile Commands
 | `make serve`        | Runs the node server at localhost:4000                    |
 | `make static`       | Builds CSS and JS                                         |
 | `make update_po`    | Extracts all strings and merges them into .po files       |
-
-Finally, fire up any web browser and go to http://localhost:4000 to run Linguistic.
 
 ## Configuring Nginx ##
 
