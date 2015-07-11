@@ -1,10 +1,10 @@
-all: requirements clean compile_json quality static serve
+all: dependencies quality static serve
 
 clean:
 	rm -rf public/css/*.css
 	rm -rf public/js/*.js
 
-requirements:
+dependencies:
 	npm install
 
 update_po:
