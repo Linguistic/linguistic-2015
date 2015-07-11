@@ -48,16 +48,6 @@ Considering the fact that Linguistic is designed to accomodate language learners
 
 where `<LANG>` is the language code of the language you are translating into. Please note that if you wish to translate into a specific dialect (such as zh-TW or en-UK), the hyphen between the language and the dialect __must__ be replaced with an underscore (_). Otherwise, i18n will not detect the language correctly.
 
-### Updating a Language Pack ###
-
-Occasionally, language packs need to be updated as new strings are added to the Linguistic interface. To update the language template and merge new strings into all language packs, run the following in the root directory:
-
-    $ gulp scrape_po
-
-It is recommended that this command be run before making _any_ changes to existing language packs. Once changes to a pack have been made, recompile the JSON representation of these packs by running:
-
-    $ gulp compile_json
-
 ### Resources ###
 GNU gettext utilities must be installed before creating these language packs. The following resources should help you get set up with installing Gettext on your respective operating system:
 
