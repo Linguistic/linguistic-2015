@@ -13,17 +13,20 @@ To track the progress of upcoming Linguistic features, visit the Linguistic Chat
 
 ## Starting Linguistic ##
 
-To start Linguistic, first `cd` into Linguistic's home directory and run the following two commands:
+When running Linguistic for the first time, the easiest way to get up and running is by simply running `make` on the home directory. Once you're all set up, these additional `make` commands may come in handy during development:
 
-    $ npm install --production
-    $ gulp
+Makefile Commands
+-----------------
 
-This installs all production libraries for Linguistic and compiles all Javascript and CSS.
-Once the gulp build has finished, the UIKit framework dependency must be compiled. To compile UIKit, run the following:
-
-    $ cd ./node_modules/uikit
-    $ npm install
-    $ gulp -t almost-flat
+| Command             | Description                                               |
+|---------------------|-----------------------------------------------------------|
+| `make compile_json` | Converts all .po arrays to i18n JSON                      |
+| `make css`          | Compiles SASS using libSass                               |
+| `make dependencies` | Installs all node dependencies                            |
+| `make js`           | Compiles Javascript using r.js                            |
+| `make serve`        | Runs the node server at localhost:4000                    |
+| `make static`       | Builds CSS and JS                                         |
+| `make update_po`    | Extracts all strings and merges them into .po files       |
 
 Finally, fire up any web browser and go to http://localhost:4000 to run Linguistic.
 
