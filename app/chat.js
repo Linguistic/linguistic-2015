@@ -1,3 +1,10 @@
+/**
+ * Linguistic Chat Server
+ *
+ * Copyright (c) 2015 Linguistic
+ * All Rights Reserved
+ */
+
 var ChatServer = function (http, io) {
 
     var
@@ -31,10 +38,10 @@ var ChatServer = function (http, io) {
                 available.splice(i, 1);
             }
         }
-    };
+    }
 
     /**
-     *  Attempts to match a user with another user to chat with
+     * Attempts to match a user with another user to chat with
      * @param {socket} user - A socket that contains user information
      * @return {socket} The socket of the matched user
      */
@@ -42,7 +49,7 @@ var ChatServer = function (http, io) {
 
         for (var i = 0; i < available.length; i++) {
 
-            var available_user = available[i]
+            var available_user = available[i];
 
             if ((available_user.source == user.dest) &&
                 (available_user.dest == user.source)) {
@@ -100,7 +107,7 @@ var ChatServer = function (http, io) {
             self.io.in(room).emit('ended');
             socket.partner.leave(room);
 
-            socket.room == null;
+            socket.room = null;
             socket.partner.room = null;
 
             return true;
@@ -167,21 +174,35 @@ var ChatServer = function (http, io) {
         });
     };
 
+    /**
+     * Initialize socket listeners
+     * @param {socket} socket - The socket to listen on
+     * @return {void}
+     */
     self.listen = function (socket) {
 
         // When the user disconnects completely
         socket.on('disconnect', function (data) {
+
+            // If the user isn't in a room,
+            // remove them from the available users list
             if (!leaveRoom(socket)) {
                 takeUser(socket);
             }
+
+            // Decrement the user count
             user_count--;
             self.io.emit('update_count', user_count);
+
             console.log("User " + socket.username + " has logged off");
         });
 
         // When a user requests to leave a chat
         socket.on('leave', function (data) {
+
+            // Remove them from the room they're in
             leaveRoom(socket);
+
             console.log(socket.username + " has left the current room");
         });
 
@@ -192,6 +213,8 @@ var ChatServer = function (http, io) {
 
         // When the user desires a new chat partner
         socket.on('request', function (data) {
+
+            var next, chat;
 
             if (data.hasOwnProperty('source') && data.hasOwnProperty('dest')) {
 
@@ -208,14 +231,16 @@ var ChatServer = function (http, io) {
                 // If there is someone to talk to
                 if (available.length > 1) {
 
-                    var next = tryMatch(socket);
+                    // Attempt to find the user a partner
+                    next = tryMatch(socket);
 
                     // If that person is a valid person to talk to
-                    if (next != null) {
+                    if (next !== null) {
 
+                        // Remove them from the available users list
                         takeUser(socket);
 
-                        var chat = chance.guid();
+                        chat = chance.guid();
 
                         socket.join(chat);
                         socket.room = chat;
