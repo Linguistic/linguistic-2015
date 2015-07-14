@@ -40,8 +40,8 @@ gulp.task('styles', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('static/scss/*.scss', ['sass']);
-    gulp.watch('static/scss/**/*.scss', ['sass']);
+    gulp.watch('static/scss/*.scss', ['styles']);
+    gulp.watch('static/scss/**/*.scss', ['styles']);
 });
 
 gulp.task('default', ['styles', 'lint']);
