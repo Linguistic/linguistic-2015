@@ -7,11 +7,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'notify',
     'util/Dictionary',
     'util/Constants',
     'include/models',
-    'include/views'
-], function ($, _, Backbone, Dictionary, Constants, Models, Views) {
+    'include/views',
+], function ($, _, Backbone, Notify, Dictionary, Constants, Models, Views) {
 
     'use strict';
 
@@ -53,6 +54,7 @@ define([
 
                 user_id = data.id;
 
+                // Initialize models
                 models.user = Models.User({
                     id: user_id
                 });
@@ -61,29 +63,23 @@ define([
                     user: models.user
                 });
 
-                welcomeView = Views.Welcome({
-                    model: models.welcome,
-                    eventBus: self.viewEvents()
-                });
-
-                models.window = Models.Window({
-                    screen: welcomeView
-                });
-
-                windowView = Views.Window({
-                    model: models.window
-                });
+                models.window = Models.Window();
 
                 models.map = Models.Map({
                     x: 44.5403,
                     y: -78.5463
                 });
 
+                // Initialize window view
+                windowView = Views.Window({
+                    model: models.window
+                });
+
+                // Load the map
                 mapView = Views.Map({
                     model: models.map
                 });
 
-                windowView.render();
                 mapView.render();
             });
 
@@ -166,9 +162,54 @@ define([
             });
 
             socketBus.on('update_count', function (count) {
+
+                var active_screen, welcomeView, aloneView;
+
+                // Update the count in the window
                 models.window.set({
                     user_count: count
                 });
+
+                if (count > 1) {
+
+                    // Create a welcome view
+                    welcomeView = Views.Welcome({
+                        model: models.welcome,
+                        eventBus: self.viewEvents()
+                    });
+
+                    // Set the welcome view as the active screen
+                    active_screen = welcomeView;
+
+                    // Push a notification to the user's desktop
+                    var myNotification = new Notify('Linguistic', {
+                        icon: '/favicon.png',
+                        body: 'Someone has logged on! You can now begin chatting',
+                        tag: 'chat_available'
+                    });
+
+                    if (Notify.needsPermission) {
+                        Notify.requestPermission(function () {
+                            myNotification.show();
+                        }, function () {});
+                    } else {
+                        myNotification.show();
+                    }
+
+                } else {
+
+                    // Create a default 'alone' view
+                    aloneView = Views.Alone();
+
+                    // Set this view as the default
+                    active_screen = aloneView;
+                }
+
+                // Set the active screen of the window
+                models.window.set({
+                    screen: active_screen
+                });
+
             });
         };
 

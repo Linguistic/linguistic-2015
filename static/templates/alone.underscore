@@ -1,0 +1,7 @@
+<img class="icon" src="/static/images/icons/globe.png">
+<h1 class="header">Looks like no one's online right now.</h1>
+<p class="subtext">
+    However, if you leave this window open,</br>
+    we'll let you know when someone is.
+</p>
+<span class="preloader uk-icon-circle-o-notch uk-icon-spin"></span>

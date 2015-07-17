@@ -28,6 +28,7 @@
     "i18n-abide": "0.0.23",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
+    "notifyjs": "git+https://github.com/Nickersoft/notify.js.git",
     "requirejs": "^2.1.17",
     "requirejs-plugins": "^1.0.2",
     "requirejs-text": "^2.0.12",

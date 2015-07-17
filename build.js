@@ -5,6 +5,7 @@
         backbone: '../../node_modules/backbone/backbone-min',
         gettext: '../../node_modules/i18n-abide/static/gettext',
         jquery: '../../node_modules/jquery/dist/jquery.min',
+        notify: '../../node_modules/notifyjs/notify',
         socketio: '../../node_modules/socket.io/node_modules/socket.io-client/socket.io',
         stacktrace: '../../node_modules/stacktrace-js/stacktrace',
         templates: '../templates',

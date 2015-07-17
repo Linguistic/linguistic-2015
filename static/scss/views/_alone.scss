@@ -1,0 +1,40 @@
+#alone {
+
+    @include padding(75px 25px 25px);
+
+    text-align:center;
+
+    .icon {
+
+        @include size(128px auto);
+        @include opacity(0.75);
+
+    }
+
+    .preloader {
+
+        @include padding(25px);
+
+        font-size:1.5em;
+        color:#555;
+    }
+
+    .header {
+
+        margin-bottom:10px;
+        line-height:1em;
+
+    }
+
+    .subtext {
+
+        @include margin(0px);
+
+        color: #777;
+        line-height:1.2em;
+        font: {
+            family:$font-family-base, sans-serif !important;
+            size:1em;
+        };
+    }
+}
