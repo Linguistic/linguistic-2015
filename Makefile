@@ -18,10 +18,12 @@ quality:
 	gulp lint
 
 js:
+	mkdir -p public/js
 	cp -f node_modules/requirejs/require.js public/js
 	node_modules/.bin/r.js -o build.js
 
 css:
+	mkdir -p public/css
 	gulp styles
 
 static: clean js css
