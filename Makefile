@@ -1,8 +1,8 @@
 all: dependencies quality static serve
 
 clean:
-	rm -rf public/css/*.css
-	rm -rf public/js/*.js
+	rm -rf public/css
+	rm -rf public/js
 
 dependencies:
 	npm install
