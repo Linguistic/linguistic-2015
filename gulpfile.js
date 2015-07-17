@@ -26,7 +26,7 @@ gulp.task('lint', function () {
 });
 
 gulp.task('styles', function () {
-    return gulp.src('static/scss/*.scss')
+    return gulp.src('static/sass/*.scss')
         .pipe(sass({
             includePaths: ["static/scss"]
         }))
@@ -40,8 +40,8 @@ gulp.task('styles', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('static/scss/*.scss', ['styles']);
-    gulp.watch('static/scss/**/*.scss', ['styles']);
+    gulp.watch('static/sass/*.scss', ['styles']);
+    gulp.watch('static/sass/**/*.scss', ['styles']);
 });
 
 gulp.task('default', ['styles', 'lint']);
