@@ -59,8 +59,12 @@
 
                 @include padding(2px 10px);
                 @include mobile {
+
                     @include padding(0px 10px);
-                    font-size:1.2em;
+
+                    font-size:1.4em;
+                    line-height:1.5em;
+
                 }
 
                 color: #5b5b5b;
@@ -122,6 +126,9 @@
                 @include padding(0);
                 @include size(1em 100%);
                 @include transition(all 0.25s ease-in-out);
+                @include mobile {
+                    font-size:1.8em;
+                };
 
                 color: lightgray;
                 display:table-cell;
@@ -152,6 +159,9 @@
                 #send_box {
 
                     @include size(100% auto);
+                    @include mobile {
+                        font-size:1.4em;
+                    };
 
                     line-height: 1.3em;
                     margin-top:0.17em;
