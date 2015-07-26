@@ -58,8 +58,8 @@
                     line-height: 2.6em;
 
                     font: {
-                         family:$font-family-light, sans-serif;
-                         size:1.2em;
+                         weight: font-weight(light);
+                         size: 1.2em;
                     };
                 }
             }

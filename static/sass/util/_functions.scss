@@ -1,0 +1,8 @@
+@function font-weight($weight) {
+
+    @if not(map-has-key($font-weights, $weight)) {
+        @error "The weight #{$weight} does not exist for the current typeset";
+    }
+
+    @return map-get($font-weights, $weight);
+}

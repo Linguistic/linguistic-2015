@@ -71,7 +71,7 @@
                 text-align: left;
 
                 font: {
-                    family: $font-family-base, sans-serif;
+                    weight: font-weight(normal);
                     size: 1em;
                 };
 
@@ -180,13 +180,9 @@
                         font-size:1.4em;
                     };
 
-                    line-height: 1.3em;
+                    line-height: 1.2em;
                     margin-top:0.17em;
 
-                    font: {
-                        family: $font-family-light, sans-serif;
-                        weight: lighter;
-                    };
                 }
             }
         }

@@ -1,5 +1,33 @@
-$font-family-light: 'VegurLight';
-$font-family-base: 'VegurRegular';
-$font-family-bold: 'VegurBold';
+// Fonts
+// --------
+$font-name: 'Lato';
+$font-family: $font-name, Helvetica, Arial, sans-serif;
+$font-path: '../fonts/';
 
+$font-weights: (
+    light: 300,
+    normal: 400,
+    bold: 700
+);
+
+@include font-face(
+    $font-name,
+    '#{$font-path}/#{$font-name}/lato-light-webfont',
+    300
+);
+
+@include font-face(
+    $font-name,
+    '#{$font-path}/#{$font-name}/lato-regular-webfont',
+    400
+);
+
+@include font-face(
+    $font-name,
+    '#{$font-path}/#{$font-name}/lato-bold-webfont',
+    700
+);
+
+// Responsive Layout
+// --------------------
 $breakpoint-mobile: 767px;

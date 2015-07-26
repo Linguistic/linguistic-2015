@@ -22,7 +22,7 @@
             }
 
             font: {
-                family: $font-family-light;
+                weight: font-weight(light);
                 size: 1.2em;
             };
 
@@ -83,8 +83,8 @@
         display:block;
 
         font: {
-            family:$font-family-base, sans-serif;
-            size:1em;
+            weight: font-weight(normal);
+            size: 1em;
         };
     }
 
@@ -124,8 +124,8 @@
                 @include position(relative);
 
                 font: {
-                    family:$font-family-base, sans-serif;
-                    size:2em;
+                    weight: font-weight(normal);
+                    size: 2em;
                 };
 
                 cursor: pointer;

@@ -24,6 +24,7 @@ js:
 
 css:
 	mkdir -p public/css
+	cp -rf static/fonts public/fonts
 	gulp styles
 
 static: clean js css
