@@ -7,12 +7,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'notify',
+    'push',
     'util/Dictionary',
     'util/Constants',
     'include/models',
     'include/views',
-], function ($, _, Backbone, Notify, Dictionary, Constants, Models, Views) {
+], function ($, _, Backbone, Push, Dictionary, Constants, Models, Views) {
 
     'use strict';
 
@@ -21,6 +21,7 @@ define([
         var self = this,
             models = {},
             client = null,
+            is_alone = false,
             viewBus = _.extend({}, Backbone.Events),
             socketBus = _.extend({}, Backbone.Events),
             initSocketBus,
@@ -172,6 +173,21 @@ define([
 
                 if (count > 1) {
 
+                    // If the user was previously alone...
+                    if  (is_alone) {
+
+                        // Push a notification to the user's desktop
+                        Push.create('Linguistic', {
+                            icon: '/favicon.png',
+                            body: 'Someone has logged on! You can now begin chatting.',
+                            tag: 'chat_available'
+                        });
+
+                    }
+
+                    // The user is no longer alone
+                    is_alone = false;
+
                     // Create a welcome view
                     welcomeView = Views.Welcome({
                         model: models.welcome,
@@ -181,21 +197,6 @@ define([
                     // Set the welcome view as the active screen
                     active_screen = welcomeView;
 
-                    // Push a notification to the user's desktop
-                    var myNotification = new Notify('Linguistic', {
-                        icon: '/favicon.png',
-                        body: 'Someone has logged on! You can now begin chatting',
-                        tag: 'chat_available'
-                    });
-
-                    if (Notify.needsPermission) {
-                        Notify.requestPermission(function () {
-                            myNotification.show();
-                        }, function () {});
-                    } else {
-                        myNotification.show();
-                    }
-
                 } else {
 
                     // Create a default 'alone' view
@@ -203,6 +204,9 @@ define([
 
                     // Set this view as the default
                     active_screen = aloneView;
+
+                    // The user is alone
+                    is_alone = true;
                 }
 
                 // Set the active screen of the window
