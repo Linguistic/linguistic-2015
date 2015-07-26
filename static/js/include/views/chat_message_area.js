@@ -97,6 +97,8 @@ define([
             css_class = (is_current_user) ? 'me' : 'stranger';
 
             this.appendItem('<span>' + sender_label + ': </span>' + text, css_class);
+
+            this.$el.parent().scrollTop(this.$el[0].scrollHeight);
         },
 
         pushDisconnect: function () {
