@@ -38,5 +38,6 @@ build/Release
 node_modules
 
 # Compiled Javascript/CSS
+public/fonts
 public/css
 public/js
