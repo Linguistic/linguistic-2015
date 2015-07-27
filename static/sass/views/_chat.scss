@@ -108,6 +108,9 @@
 
         @include position(absolute, null null 0 0);
         @include size(100% 3em);
+        @include mobile {
+            @include padding(10px 0);
+        }
 
         display: block;
 
