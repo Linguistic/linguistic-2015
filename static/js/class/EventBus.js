@@ -185,14 +185,19 @@ define([
 
                     }
 
+                    // If no screen is currently showing
+                    if (!models.window.get('screen')) {
+
+                        // Create a welcome view
+                        welcomeView = Views.Welcome({
+                            model: models.welcome,
+                            eventBus: self.viewEvents()
+                        });
+
+                    }
+
                     // The user is no longer alone
                     is_alone = false;
-
-                    // Create a welcome view
-                    welcomeView = Views.Welcome({
-                        model: models.welcome,
-                        eventBus: self.viewEvents()
-                    });
 
                     // Set the welcome view as the active screen
                     active_screen = welcomeView;
