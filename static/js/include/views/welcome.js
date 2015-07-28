@@ -21,10 +21,11 @@ define([
         },
 
         initialize: function(options) {
+
             this.model = options.model;
             this.eventBus = options.eventBus;
 
-            this.listenTo(this.model, 'change:error', this.render);
+            this.listenTo(this.model, 'change:error', this.renderError);
             this.listenTo(this.model.get('user'), 'change:source change:dest', this.render);
         },
 
@@ -34,17 +35,28 @@ define([
                 error = self.model.get('error'),
                 $error_text = null;
 
-            if(error && jQuery.trim(error).length != 0) {
+            if(error && jQuery.trim(error).length !== 0) {
+
                 $error_text = this.$el.find('#error_text');
+
                 $error_text.fadeOut(function() {
                     $(this).html(self.model.get('error')).fadeIn();
                 });
+
+                return true;
+
+            } else {
+
+                return false;
+
             }
         },
 
         render: function () {
-
-            this.$el.html(this.template());
+            console.log(this.model.get('error'));
+            this.$el.html(this.template({
+                error_text: this.model.get('error')
+            }));
 
             this.nativeLanguageList = new LanguageListView({
                 model: this.model,
@@ -60,10 +72,6 @@ define([
 
             this.$el.find('#native_list').html(this.nativeLanguageList.render().el);
             this.$el.find('#studying_list').html(this.studyLanguageList.render().el);
-
-            if (this.model.get('error')) {
-                this.$el.find('#error_text').html(this.model.get('error'));
-            }
 
             return this;
         },

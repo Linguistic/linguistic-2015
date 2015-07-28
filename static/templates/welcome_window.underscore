@@ -7,7 +7,11 @@
 </div>
 
 <button class="uk-button uk-button-large" style="width:8em;" id="start_button"><%= gettext('Enter') %></button>
-<span id="error_text"></span>
+<span id="error_text">
+    <% if (error_text) { %>
+            <%= error_text %>
+    <% } %>
+</span>
 
 <footer>
     <ul>

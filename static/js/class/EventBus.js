@@ -253,6 +253,8 @@ define([
 
                 } else {
 
+                    models.welcome.unset('error');
+
                     if (client) {
 
                         client.requestNew(
@@ -275,7 +277,7 @@ define([
 
                     } else {
 
-                        console.error('Client required to request partner (missing attachClient() call)');
+                        console.error('Chat client required to request partner (missing attachClient() call)');
 
                     }
 
