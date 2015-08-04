@@ -16,7 +16,7 @@ compile_json:
 	node_modules/i18n-abide/bin/compile-json locale locale
 
 quality:
-	gulp lint
+	node_modules/.bin/gulp lint
 
 js:
 	mkdir -p public/js
@@ -26,7 +26,7 @@ js:
 css:
 	mkdir -p public/css
 	cp -rf static/fonts public/fonts
-	gulp styles
+	node_modules/.bin/gulp styles
 
 static: clean js css
 
