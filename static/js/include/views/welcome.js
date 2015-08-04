@@ -53,7 +53,7 @@ define([
         },
 
         render: function () {
-            console.log(this.model.get('error'));
+          
             this.$el.html(this.template({
                 error_text: this.model.get('error')
             }));
