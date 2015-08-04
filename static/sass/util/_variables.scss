@@ -4,6 +4,8 @@ $font-name: 'Lato';
 $font-family: $font-name, Helvetica, Arial, sans-serif;
 $font-path: '../fonts/';
 
+$lc-font-name: to-lower-case($font-name);
+
 $font-weights: (
     light: 300,
     normal: 400,
@@ -12,19 +14,19 @@ $font-weights: (
 
 @include font-face(
     $font-name,
-    '#{$font-path}/#{$font-name}/lato-light-webfont',
+    '#{$font-path}/#{$lc-font-name}/lato-light-webfont',
     300
 );
 
 @include font-face(
     $font-name,
-    '#{$font-path}/#{$font-name}/lato-regular-webfont',
+    '#{$font-path}/#{$lc-font-name}/lato-regular-webfont',
     400
 );
 
 @include font-face(
     $font-name,
-    '#{$font-path}/#{$font-name}/lato-bold-webfont',
+    '#{$font-path}/#{$lc-font-name}/lato-bold-webfont',
     700
 );
 
