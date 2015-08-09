@@ -72,21 +72,24 @@ var ChatServer = function (http, io) {
      */
     function extractLocation (data) {
 
-        var
-        data_json = JSON.parse(data),
-        data_loc = data_json.loc.split(','),
-        data_city = data_json.city,
-        data_region = data_json.region;
+        try {
+            var
+            data_json = JSON.parse(data),
+            data_loc = data_json.loc.split(','),
+            data_city = data_json.city,
+            data_region = data_json.region;
 
-        return {
-            points: {
-                x: data_loc[0],
-                y: data_loc[1]
-            },
-            city: data_city,
-            region: data_region
-        };
-
+            return {
+                points: {
+                    x: data_loc[0],
+                    y: data_loc[1]
+                },
+                city: data_city,
+                region: data_region
+            };
+        } catch (e) {
+            return [];
+        }
     }
 
     /**
