@@ -186,7 +186,7 @@ define([
                     }
 
                     // If no screen is currently showing
-                    if (!models.window.get('screen')) {
+                    if (!models.window.get('screen') || is_alone) {
 
                         // Create a welcome view
                         welcomeView = Views.Welcome({
