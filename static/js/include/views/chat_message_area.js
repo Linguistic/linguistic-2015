@@ -88,16 +88,13 @@ define([
             current_user = this.model.get('user');
 
             sender = model.get('sender');
-            text   = model.get('text');
+            text   = model.escape('text');
 
             is_current_user = (sender === current_user.get('id'));
-
             sender_label = (is_current_user) ? Dictionary.Labels().LBL_ME : Dictionary.Labels().LBL_STRANGER;
-
             css_class = (is_current_user) ? 'me' : 'stranger';
 
             this.appendItem('<span>' + sender_label + ': </span>' + text, css_class);
-
             this.$el.parent().scrollTop(this.$el[0].scrollHeight);
         },
 
