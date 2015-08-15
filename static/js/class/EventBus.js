@@ -194,13 +194,13 @@ define([
                             eventBus: self.viewEvents()
                         });
 
+                        // Set the welcome view as the active screen
+                        active_screen = welcomeView;
+
                     }
 
                     // The user is no longer alone
                     is_alone = false;
-
-                    // Set the welcome view as the active screen
-                    active_screen = welcomeView;
 
                 } else {
 
@@ -214,10 +214,12 @@ define([
                     is_alone = true;
                 }
 
-                // Set the active screen of the window
-                models.window.set({
-                    screen: active_screen
-                });
+                if (active_screen) {
+                    // Set the active screen of the window
+                    models.window.set({
+                        screen: active_screen
+                    });
+                }
 
             });
         };
