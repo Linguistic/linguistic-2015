@@ -86,20 +86,10 @@ define([
 
             socketBus.on('enter', function (data) {
 
-                var city,
-                    latitude,
-                    longitude,
-                    region;
-
-                latitude = data.points.x;
-                longitude = data.points.y;
-                city = data.city;
-                region = data.region;
-
                 models.partner = Models.User({
-                    city: city,
-                    region: region,
-                    typing:false
+                    city: data.city,
+                    region: data.region,
+                    typing: false
                 });
 
                 models.chat.set({
@@ -108,10 +98,14 @@ define([
                     ui_state: Constants.Chat().UIStates().CHATTING
                 });
 
-                models.map.set({
-                    x: latitude,
-                    y: longitude
-                });
+                if (data.points && data.city && data.region) {
+
+                    models.map.set({
+                        x: data.points.x,
+                        y: data.points.y
+                    });
+
+                }
 
             });
 
