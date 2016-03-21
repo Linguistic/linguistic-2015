@@ -6,11 +6,11 @@
         gettext: '../../node_modules/i18n-abide/static/gettext',
         jquery: '../../node_modules/jquery/dist/jquery.min',
         push: '../../node_modules/push.js/push',
-        socketio: '../../node_modules/socket.io/node_modules/socket.io-client/socket.io',
+        socketio: '../../node_modules/socket.io-client/socket.io',
         stacktrace: '../../node_modules/stacktrace-js/stacktrace',
         templates: '../templates',
         text: '../../node_modules/requirejs-text/text',
-        underscore: '../../node_modules/backbone/node_modules/underscore/underscore-min'
+        underscore: '../../node_modules/underscore/underscore-min'
     },
     shim: {
         jquery: {
